@@ -10,6 +10,7 @@ module.exports = merge(common, {
   devServer: {
     port: 5050,
     compress: true,
+    open: true
   },
   plugins: [
     new PrettierPlugin(),
