@@ -1,0 +1,61 @@
+.section {
+  background-color: #000000;
+  padding-left: 58px;
+  color: #ffffff;
+  height: 100vh;
+}
+.title {
+  font-size: 25px;
+  padding: 50px 0;
+}
+.adminMenuButton {
+  composes: button from "../../components/Button/button.module.css";
+  margin: 14px 0 0;
+}
+.adminMenuButtonActive {
+  composes: adminMenuButton;
+  composes: active from "../../components/Button/button.module.css";
+}
+.submenu {
+  text-align: right;
+  animation: openSubmenu 0.3s ease-in-out forwards;
+  transform-origin: top center;
+}
+@keyframes openSubmenu {
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+.submenu li {
+  list-style: none;
+  padding: 7px 15px;
+  color: rgb(177, 177, 177);
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s linear;
+  position: relative;
+}
+.submenu li:hover {
+  color: rgb(255, 255, 255);
+}
+.active {
+  color: #ffffff !important;
+}
+.submenu .active::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 6px solid rgb(255, 255, 255);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+}
