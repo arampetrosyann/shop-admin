@@ -1,45 +1,87 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
+import { useSortBy, useTable } from "react-table";
 import Layout from "../../components/Layout";
 import Checkbox from "../../components/Checkbox";
 import classes from "./articleContent.module.css";
 
-const itemArray = [
-  {
-    id: 0,
-    column1: "Lorem, ipsum dolor.",
-    column2: 100,
-    column3: "Lorem, ipsum dolor.",
-    column4: "Lorem ipsum.",
-    column5: "Lorem ipsum.",
-  },
-  {
-    id: 1,
-    column1: "Lorem, ipsum dolor.",
-    column2: 100,
-    column3: "Lorem, ipsum dolor.",
-    column4: "Lorem ipsum.",
-    column5: "Lorem ipsum.",
-  },
-  {
-    id: 2,
-    column1: "Lorem, ipsum dolor.",
-    column2: 100,
-    column3: "Lorem, ipsum dolor.",
-    column4: "Lorem ipsum.",
-    column5: "Lorem ipsum.",
-  },
-  {
-    id: 3,
-    column1: "Lorem, ipsum dolor.",
-    column2: 100,
-    column3: "Lorem, ipsum dolor.",
-    column4: "Lorem ipsum.",
-    column5: "Lorem ipsum.",
-  },
-];
-
 const ArticleContent = () => {
   const [checked, setChecked] = useState([]);
+
+  const data = useMemo(
+    () => [
+      {
+        id: 0,
+        column1: "Lorem, ipsum dolor.",
+        column2: 100,
+        column3: "Lorem, ipsum dolor.",
+        column4: "Lorem ipsum.",
+        column5: "Lorem ipsum.",
+      },
+      {
+        id: 1,
+        column1: "Lorem, ipsum dolor.",
+        column2: 200,
+        column3: "Lorem, ipsum dolor.",
+        column4: "Lorem ipsum.",
+        column5: "Lorem ipsum.",
+      },
+      {
+        id: 2,
+        column1: "Lorem, ipsum dolor.",
+        column2: 500,
+        column3: "Lorem, ipsum dolor.",
+        column4: "Lorem ipsum.",
+        column5: "Lorem ipsum.",
+      },
+      {
+        id: 3,
+        column1: "Lorem, ipsum dolor.",
+        column2: 400,
+        column3: "Lorem, ipsum dolor.",
+        column4: "Lorem ipsum.",
+        column5: "Lorem ipsum.",
+      },
+    ],
+    []
+  );
+
+  const columns = useMemo(
+    () => [
+      {
+        Header: "",
+        accessor: "id",
+      },
+      {
+        Header: "Column 1",
+        accessor: "column1",
+      },
+      {
+        Header: "Column 2",
+        accessor: "column2",
+      },
+      {
+        Header: "Column 3",
+        accessor: "column3",
+      },
+      {
+        Header: "Column 4",
+        accessor: "column4",
+      },
+      {
+        Header: "Column 5",
+        accessor: "column5",
+      },
+    ],
+    []
+  );
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+  } = useTable({ columns, data }, useSortBy);
 
   const handleChecked = (id) => {
     const result = checked.includes(id)
@@ -63,9 +105,9 @@ const ArticleContent = () => {
             </div>
           </div>
           <div className={classes.contentBoxContent}>
-            <table>
+            <table {...getTableProps()}>
               <thead>
-                <tr>
+                {/* <tr>
                   <th>
                     <Checkbox
                       classes={{ checkbox: classes.contentCheckbox }}
@@ -78,9 +120,29 @@ const ArticleContent = () => {
                   <th>Column 3</th>
                   <th>Column 4</th>
                   <th>Column 5</th>
-                </tr>
+                </tr> */}
+                {headerGroups.map((headerGroup) => (
+                  <tr {...headerGroup.getHeaderGroupProps()}>
+                    {headerGroup.headers.map((column) => (
+                      <th
+                        {...column.getHeaderProps(
+                          column.getSortByToggleProps()
+                        )}
+                      >
+                        {column.render("Header")}
+                        <span>
+                          {column.isSorted
+                            ? column.isSortedDesc
+                              ? "arrowTop"
+                              : "arrowDown"
+                            : ""}
+                        </span>
+                      </th>
+                    ))}
+                  </tr>
+                ))}
               </thead>
-              <tbody>
+              {/* <tbody>
                 {itemArray.map((el, idx) => {
                   return (
                     <tr key={idx}>
@@ -96,6 +158,22 @@ const ArticleContent = () => {
                       <td>{el.column3}</td>
                       <td>{el.column4}</td>
                       <td>{el.column5}</td>
+                    </tr>
+                  );
+                })}
+              </tbody> */}
+              <tbody {...getTableBodyProps()}>
+                {rows.map((row) => {
+                  prepareRow(row);
+                  return (
+                    <tr {...row.getRowProps()}>
+                      {row.cells.map((cell) => {
+                        return (
+                          <td {...cell.getCellProps()}>
+                            {cell.render("Cell")}
+                          </td>
+                        );
+                      })}
                     </tr>
                   );
                 })}

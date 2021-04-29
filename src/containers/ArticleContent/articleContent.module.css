@@ -53,3 +53,18 @@
 .contentBoxContent table tr:nth-child(even) {
   background-color: #f4f4f4;
 }
+:global(.a, .b, .c) {
+  font-family: "icomoon";
+  font-size: 8px;
+  color: #000000;
+  margin-left: 20px;
+}
+:global(.a)::after {
+  content: "\e911";
+}
+:global(.b)::after {
+  content: "\e912";
+}
+:global(.c)::after {
+  content: "\e918";
+}
