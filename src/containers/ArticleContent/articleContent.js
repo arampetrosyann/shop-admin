@@ -1,8 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../components/Layout";
+import Checkbox from "../../components/Checkbox";
 import classes from "./articleContent.module.css";
 
+const itemArray = [
+  {
+    id: 0,
+    column1: "Lorem, ipsum dolor.",
+    column2: 100,
+    column3: "Lorem, ipsum dolor.",
+    column4: "Lorem ipsum.",
+    column5: "Lorem ipsum.",
+  },
+  {
+    id: 1,
+    column1: "Lorem, ipsum dolor.",
+    column2: 100,
+    column3: "Lorem, ipsum dolor.",
+    column4: "Lorem ipsum.",
+    column5: "Lorem ipsum.",
+  },
+  {
+    id: 2,
+    column1: "Lorem, ipsum dolor.",
+    column2: 100,
+    column3: "Lorem, ipsum dolor.",
+    column4: "Lorem ipsum.",
+    column5: "Lorem ipsum.",
+  },
+  {
+    id: 3,
+    column1: "Lorem, ipsum dolor.",
+    column2: 100,
+    column3: "Lorem, ipsum dolor.",
+    column4: "Lorem ipsum.",
+    column5: "Lorem ipsum.",
+  },
+];
+
 const ArticleContent = () => {
+  const [checked, setChecked] = useState([]);
+
+  const handleChecked = (id) => {
+    const result = checked.includes(id)
+      ? checked.filter((x) => x !== id)
+      : [...checked, id];
+    setChecked(result);
+  };
+
+  const checkAll = () => {};
   return (
     <Layout>
       <div className={classes.section}>
@@ -20,24 +66,39 @@ const ArticleContent = () => {
             <table>
               <thead>
                 <tr>
+                  <th>
+                    <Checkbox
+                      classes={{ checkbox: classes.contentCheckbox }}
+                      checked={checked}
+                      onChange={checkAll}
+                    />
+                  </th>
                   <th>Column 1</th>
                   <th>Column 2</th>
                   <th>Column 3</th>
                   <th>Column 4</th>
+                  <th>Column 5</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Lorem, ipsum dolor.</td>
-                  <td>$100</td>
-                  <td>Lorem, ipsum dolor.</td>
-                  <td>Lorem ipsum.</td>
-                  <td>Lorem ipsum.</td>
-                </tr>
-                <tr>
-                  <td>February</td>
-                  <td>$80</td>
-                </tr>
+                {itemArray.map((el, idx) => {
+                  return (
+                    <tr key={idx}>
+                      <td>
+                        <Checkbox
+                          classes={{ checkbox: classes.contentCheckbox }}
+                          checked={checked.includes(el.id)}
+                          onChange={() => handleChecked(el.id)}
+                        />
+                      </td>
+                      <td>{el.column1}</td>
+                      <td>{el.column2}</td>
+                      <td>{el.column3}</td>
+                      <td>{el.column4}</td>
+                      <td>{el.column5}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

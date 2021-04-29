@@ -37,5 +37,19 @@
 }
 .contentBoxContent {
   background-color: #fff;
-  height: 100px;
+  padding: 15px 20px;
+  border-radius: 0 0 6px 6px;
+}
+.contentBoxContent table {
+  width: 100%;
+  text-align: left;
+  border-spacing: 0;
+}
+.contentBoxContent table th,
+.contentBoxContent table td {
+  border-bottom: 1px solid rgb(197, 197, 197);
+  padding: 10px;
+}
+.contentBoxContent table tr:nth-child(even) {
+  background-color: #f4f4f4;
 }

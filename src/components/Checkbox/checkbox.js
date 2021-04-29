@@ -7,7 +7,13 @@ function Checkbox(props) {
   const classes = mergeClasses(defaultClasses, props.classes);
   return (
     <div className={classes.checkbox}>
-      <input type="checkbox" id="checkbox" checked={props.checked} onChange={props.onChange} />
+      <input
+        type="checkbox"
+        id="checkbox"
+        name={props.name}
+        checked={props.checked}
+        onChange={props.onChange}
+      />
       <label htmlFor="checkbox">{props.children}</label>
     </div>
   );
@@ -15,6 +21,7 @@ function Checkbox(props) {
 
 Checkbox.defaultProps = {
   className: "",
+  name: "",
   checked: false,
   onChange: () => {},
 };
