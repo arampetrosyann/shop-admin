@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../../components/Layout";
 import AdminMenu from "../AdminMenu";
+import ArticleContent from "../ArticleContent";
 import classes from "./sections.module.css";
 
 const Sections = () => {
@@ -10,7 +11,7 @@ const Sections = () => {
         <AdminMenu />
       </div>
       <div className={classes.contentSide}>
-        <Layout>aaaaaaa</Layout>
+        <ArticleContent />
       </div>
     </div>
   );

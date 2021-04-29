@@ -1,0 +1,41 @@
+.section {
+  margin-top: 40px;
+}
+.section h4 {
+  margin-top: 10px;
+  color: rgb(71, 71, 71);
+  font-weight: 500;
+}
+.contentBox {
+  border: 1px solid rgb(197, 197, 197);
+  box-shadow: 0px 2px 10px #a5a5a5;
+  border-radius: 6px;
+  margin-top: 40px;
+}
+.contentBoxTitle {
+  display: flex;
+  justify-content: space-between;
+  background-color: #e0e0e0;
+  padding: 15px 20px;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+}
+.contentBoxForm {
+  color: rgb(71, 71, 71);
+  position: absolute;
+  right: 15px;
+  top: 27px;
+}
+.contentBoxTitleTable,
+.contentBoxTitleForms {
+  padding: 8px 12px;
+  background-color: #fff;
+  border: 1px solid rgb(197, 197, 197);
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+}
+.contentBoxContent {
+  background-color: #fff;
+  height: 100px;
+}
