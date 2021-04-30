@@ -1,4 +1,5 @@
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const DirectoryNamedWebpackPlugin = require("directory-named-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -7,6 +8,11 @@ module.exports = {
       template: "public/index.html",
     }),
   ],
+  resolve: {
+    plugins: [
+      new DirectoryNamedWebpackPlugin(true)
+    ]
+  },
   module: {
     rules: [
       {
