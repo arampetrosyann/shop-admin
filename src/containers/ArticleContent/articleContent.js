@@ -1,12 +1,15 @@
-import React, { useState, useMemo } from "react";
-import { useSortBy, useTable } from "react-table";
+import React, { useMemo } from "react";
+import {
+  useSortBy,
+  useTable,
+  useRowSelect,
+  usePagination,
+} from "react-table";
 import Layout from "../../components/Layout";
 import Checkbox from "../../components/Checkbox";
 import classes from "./articleContent.module.css";
 
 const ArticleContent = () => {
-  const [checked, setChecked] = useState([]);
-
   const data = useMemo(
     () => [
       {
@@ -44,12 +47,11 @@ const ArticleContent = () => {
     ],
     []
   );
-
   const columns = useMemo(
     () => [
       {
         Header: "",
-        accessor: "id",
+        accessor: "checkbox",
       },
       {
         Header: "Column 1",
@@ -58,6 +60,16 @@ const ArticleContent = () => {
       {
         Header: "Column 2",
         accessor: "column2",
+        Cell: (row) => (
+          <div
+            style={{
+              color: row.row.values.column2 ? "blue" : "red",
+              fontWeight: 600,
+            }}
+          >
+            ${row.value}
+          </div>
+        ),
       },
       {
         Header: "Column 3",
@@ -81,16 +93,35 @@ const ArticleContent = () => {
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({ columns, data }, useSortBy);
+    canPreviousPage,
+    canNextPage,
+    nextPage,
+    previousPage,
+  } = useTable(
+    { columns, data },
+    useSortBy,
+    usePagination,
+    useRowSelect,
+    (hooks) => {
+      hooks.visibleColumns.push((columns) => [
+        {
+          id: "selection",
+          Header: ({ getToggleAllRowsSelectedProps }) => (
+            <div>
+              <Checkbox {...getToggleAllRowsSelectedProps()} />
+            </div>
+          ),
+          Cell: ({ row }) => (
+            <div>
+              <Checkbox {...row.getToggleRowSelectedProps()} />
+            </div>
+          ),
+        },
+        ...columns,
+      ]);
+    }
+  );
 
-  const handleChecked = (id) => {
-    const result = checked.includes(id)
-      ? checked.filter((x) => x !== id)
-      : [...checked, id];
-    setChecked(result);
-  };
-
-  const checkAll = () => {};
   return (
     <Layout>
       <div className={classes.section}>
@@ -107,20 +138,6 @@ const ArticleContent = () => {
           <div className={classes.contentBoxContent}>
             <table {...getTableProps()}>
               <thead>
-                {/* <tr>
-                  <th>
-                    <Checkbox
-                      classes={{ checkbox: classes.contentCheckbox }}
-                      checked={checked}
-                      onChange={checkAll}
-                    />
-                  </th>
-                  <th>Column 1</th>
-                  <th>Column 2</th>
-                  <th>Column 3</th>
-                  <th>Column 4</th>
-                  <th>Column 5</th>
-                </tr> */}
                 {headerGroups.map((headerGroup) => (
                   <tr {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column) => (
@@ -142,28 +159,8 @@ const ArticleContent = () => {
                   </tr>
                 ))}
               </thead>
-              {/* <tbody>
-                {itemArray.map((el, idx) => {
-                  return (
-                    <tr key={idx}>
-                      <td>
-                        <Checkbox
-                          classes={{ checkbox: classes.contentCheckbox }}
-                          checked={checked.includes(el.id)}
-                          onChange={() => handleChecked(el.id)}
-                        />
-                      </td>
-                      <td>{el.column1}</td>
-                      <td>{el.column2}</td>
-                      <td>{el.column3}</td>
-                      <td>{el.column4}</td>
-                      <td>{el.column5}</td>
-                    </tr>
-                  );
-                })}
-              </tbody> */}
               <tbody {...getTableBodyProps()}>
-                {rows.map((row) => {
+                {rows.slice(0, 10).map((row, i) => {
                   prepareRow(row);
                   return (
                     <tr {...row.getRowProps()}>
@@ -179,6 +176,17 @@ const ArticleContent = () => {
                 })}
               </tbody>
             </table>
+            <div>
+              <button
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+              >
+                Previous
+              </button>
+              <button onClick={() => nextPage()} disabled={!canNextPage}>
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </div>
