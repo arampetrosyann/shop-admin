@@ -1,5 +1,4 @@
 .root {
-  width: 266px;
   padding: 11px 17px;
   background: #ffffff;
   border: 1.5px solid #1d1c1c;
@@ -8,5 +7,5 @@
 }
 
 .root:focus {
-  border-color: #000050;
+  border-color: #315e8f;
 }

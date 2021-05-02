@@ -8,10 +8,9 @@ const Input = (props) => {
     value,
     id,
     name,
-    holder,
+    placeholder,
+    maxLength,
     onChange,
-    onBlur,
-    onClick,
     style,
   } = props;
 
@@ -25,10 +24,9 @@ const Input = (props) => {
       value={value}
       id={id}
       name={name}
-      placeholder={holder}
+      placeholder={placeholder}
+      maxLength={maxLength}
       onChange={onChange}
-      onClick={onClick}
-      onBlur={onBlur}
     />
   );
 };
