@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import store from "./store";
 import {
   ApolloClient,
   ApolloProvider,
@@ -25,7 +27,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   link: concat(authMiddleware, httpLink),
   cache: new InMemoryCache(),
 });
@@ -33,7 +35,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root")

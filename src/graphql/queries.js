@@ -9,3 +9,21 @@ export const GET_USERS = gql`
     }
   }
 `;
+
+export const GET_PRODUCTS_DATA = gql`
+  query GetProductsData($categoryId: ID!) {
+    getCategoryProducts(categoryId: $categoryId) {
+      products {
+        id
+        name
+        price
+        discountedPrice
+        averageRating
+        urlKey
+        images {
+          path
+        }
+      }
+    }
+  }
+`;

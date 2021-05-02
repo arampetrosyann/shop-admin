@@ -53,18 +53,43 @@
 .contentBoxContent table tr:nth-child(even) {
   background-color: #f4f4f4;
 }
-:global(.a, .b, .c) {
+.pagination {
+  margin-top: 10px;
+}
+.previousPage,
+.nextPage {
+  border: none;
+  padding: 5px;
+  outline: none;
+  border-radius: 5px;
+  background-color: #519b00;
+  color: #ffffff;
+  width: 80px;
+  cursor: pointer;
+  transition: 0.3s linear;
+  margin-right: 8px;
+}
+.previousPage:hover,
+.nextPage:hover {
+  background-color: #77b700;
+}
+.disabled {
+  composes: previousPage;
+  background-color: #77b700;
+  color: #d1d1d1;
+}
+.edit,
+.remove {
   font-family: "icomoon";
-  font-size: 8px;
-  color: #000000;
-  margin-left: 20px;
+  margin-right: 15px;
+  font-size: 14px;
+  cursor: pointer;
 }
-:global(.a)::after {
-  content: "\e911";
+.edit::after {
+  content: "\e905";
+  color: rgb(165, 165, 1);
 }
-:global(.b)::after {
-  content: "\e912";
-}
-:global(.c)::after {
-  content: "\e918";
+.remove::after {
+  content: "\ea0f";
+  color: rgb(177, 2, 2);
 }

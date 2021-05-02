@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { useHistory } from "react-router-dom";
 import {
   useSortBy,
   useTable,
@@ -10,6 +11,12 @@ import Checkbox from "../../components/Checkbox";
 import classes from "./articleContent.module.css";
 
 const ArticleContent = () => {
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push("/");
+  };
+
   const data = useMemo(
     () => [
       {
@@ -40,6 +47,70 @@ const ArticleContent = () => {
         id: 3,
         column1: "Lorem, ipsum dolor.",
         column2: 400,
+        column3: "Lorem, ipsum dolor.",
+        column4: "Lorem ipsum.",
+        column5: "Lorem ipsum.",
+      },
+      {
+        id: 4,
+        column1: "Lorem, ipsum dolor.",
+        column2: 400,
+        column3: "Lorem, ipsum dolor.",
+        column4: "Lorem ipsum.",
+        column5: "Lorem ipsum.",
+      },
+      {
+        id: 5,
+        column1: "Lorem, ipsum dolor.",
+        column2: 200,
+        column3: "Lorem, ipsum dolor.",
+        column4: "Lorem ipsum.",
+        column5: "Lorem ipsum.",
+      },
+      {
+        id: 6,
+        column1: "Lorem, ipsum dolor.",
+        column2: 300,
+        column3: "Lorem, ipsum dolor.",
+        column4: "Lorem ipsum.",
+        column5: "Lorem ipsum.",
+      },
+      {
+        id: 7,
+        column1: "Lorem, ipsum dolor.",
+        column2: 900,
+        column3: "Lorem, ipsum dolor.",
+        column4: "Lorem ipsum.",
+        column5: "Lorem ipsum.",
+      },
+      {
+        id: 8,
+        column1: "Lorem, ipsum dolor.",
+        column2: 500,
+        column3: "Lorem, ipsum dolor.",
+        column4: "Lorem ipsum.",
+        column5: "Lorem ipsum.",
+      },
+      {
+        id: 9,
+        column1: "Lorem, ipsum dolor.",
+        column2: 600,
+        column3: "Lorem, ipsum dolor.",
+        column4: "Lorem ipsum.",
+        column5: "Lorem ipsum.",
+      },
+      {
+        id: 10,
+        column1: "Lorem, ipsum dolor.",
+        column2: 700,
+        column3: "Lorem, ipsum dolor.",
+        column4: "Lorem ipsum.",
+        column5: "Lorem ipsum.",
+      },
+      {
+        id: 11,
+        column1: "Lorem, ipsum dolor.",
+        column2: 800,
         column3: "Lorem, ipsum dolor.",
         column4: "Lorem ipsum.",
         column5: "Lorem ipsum.",
@@ -83,6 +154,21 @@ const ArticleContent = () => {
         Header: "Column 5",
         accessor: "column5",
       },
+      {
+        Header: "Column 6",
+        accessor: "column6",
+        Cell: (row) => (
+          <div
+            style={{
+              color: row.row.values.column2 ? "blue" : "red",
+              fontWeight: 600,
+            }}
+          >
+            <span className={classes.edit} onClick={handleEdit}></span>
+            <span className={classes.remove}></span>
+          </div>
+        ),
+      },
     ],
     []
   );
@@ -95,10 +181,19 @@ const ArticleContent = () => {
     prepareRow,
     canPreviousPage,
     canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
     nextPage,
     previousPage,
+    page,
+    setPageSize,
+    state: { pageIndex, pageSize },
   } = useTable(
-    { columns, data },
+    {
+      columns,
+      data,
+    },
     useSortBy,
     usePagination,
     useRowSelect,
@@ -147,20 +242,13 @@ const ArticleContent = () => {
                         )}
                       >
                         {column.render("Header")}
-                        <span>
-                          {column.isSorted
-                            ? column.isSortedDesc
-                              ? "arrowTop"
-                              : "arrowDown"
-                            : ""}
-                        </span>
                       </th>
                     ))}
                   </tr>
                 ))}
               </thead>
               <tbody {...getTableBodyProps()}>
-                {rows.slice(0, 10).map((row, i) => {
+                {page.slice(0, 10).map((row, i) => {
                   prepareRow(row);
                   return (
                     <tr {...row.getRowProps()}>
@@ -176,16 +264,24 @@ const ArticleContent = () => {
                 })}
               </tbody>
             </table>
-            <div>
+            <div className={classes.pagination}>
               <button
+                className={
+                  canPreviousPage ? classes.previousPage : classes.disabled
+                }
                 onClick={() => previousPage()}
-                disabled={!canPreviousPage}
               >
-                Previous
+                {"previous"}
               </button>
-              <button onClick={() => nextPage()} disabled={!canNextPage}>
-                Next
+              <button
+                className={
+                  canNextPage ? classes.nextPage : classes.disabled
+                }
+                onClick={() => nextPage()}
+              >
+                {"next"}
               </button>
+              <span>Pages {pageOptions.length}</span>
             </div>
           </div>
         </div>
