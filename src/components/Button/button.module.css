@@ -1,0 +1,17 @@
+.root {
+  max-width: fit-content;
+  padding: 11px 36px;
+  border: none;
+  background: #315e8f;
+  border-radius: 6px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  cursor: pointer;
+  transition: 300ms;
+}
+
+.root:hover {
+  background-color: #1b1b1b;
+}
