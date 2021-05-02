@@ -9,4 +9,9 @@
   font-size: inherit;
   outline: none;
   cursor: pointer;
+  transition: 300ms;
+}
+
+.root:hover {
+  background-color: #1b1b1b;
 }
