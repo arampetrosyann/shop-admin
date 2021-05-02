@@ -1,0 +1,25 @@
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 450px;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 18px;
+}
+
+.submitBtn {
+  composes: submitBtn from "../../components/Form/form.module.css";
+  width: 100%;
+  max-width: unset;
+}
