@@ -17,8 +17,18 @@
   "author": "Aram Petrosyan",
   "license": "ISC",
   "dependencies": {
+    "@apollo/client": "^3.3.15",
+    "formik": "^2.2.6",
+    "graphql": "^15.5.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
+    "react-table": "^7.7.0",
+    "redux": "^4.1.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.3.0",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",
@@ -29,6 +39,7 @@
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^5.2.4",
     "csv-loader": "^3.0.3",
+    "directory-named-webpack-plugin": "^4.0.1",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-only-warn": "^1.0.2",

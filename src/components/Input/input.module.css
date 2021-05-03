@@ -9,3 +9,14 @@
 .root:focus {
   border-color: #315e8f;
 }
+
+.error {
+  border-color: #a60d22;
+}
+
+.errorMessage {
+  padding-top: 6px;
+  padding-left: 8px;
+  color: #a60d22;
+  font-size: 14px;
+}
