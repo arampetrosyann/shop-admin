@@ -1,49 +1,13 @@
-import React, { useMemo } from "react";
+import React from "react";
 import defaultClasses from "./signIn.module.css";
 import mergeClasses from "../../helpers/mergeClasses";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import useSignIn from "../../talons/useSignIn";
 import Form from "../../components/Form";
-
-const validationSchema = Yup.object().shape({
-  email: Yup.string().email("Սխալ էլ. հասցե"),
-  password: Yup.string(),
-});
 
 const SignIn = (props) => {
   const classes = mergeClasses(defaultClasses, props.classes);
 
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema,
-    onSubmit: () => {},
-  });
-
-  const fields = useMemo(() => {
-    return [
-      {
-        field: "input",
-        type: "text",
-        name: "email",
-        id: "email",
-        value: formik.values.email,
-        placeholder: "Էլ. հասցե",
-        onChange: formik.handleChange,
-      },
-      {
-        field: "input",
-        type: "password",
-        name: "password",
-        id: "password",
-        value: formik.values.password,
-        placeholder: "Գաղտնաբառ",
-        onChange: formik.handleChange,
-      },
-    ];
-  }, [formik.values]);
+  const { fields, formik } = useSignIn();
 
   return (
     <div className={classes.root}>
