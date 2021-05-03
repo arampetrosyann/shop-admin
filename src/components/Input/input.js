@@ -1,34 +1,34 @@
 import React from "react";
-import defaultClasses from "./button.module.css";
+import defaultClasses from "./input.module.css";
 import mergeClasses from "../../helpers/mergeClasses";
 
-const Button = (props) => {
+const Input = (props) => {
   const {
     type,
     value,
-    style,
     id,
-    disabled,
-    autoFocus,
-    onClick,
-    children,
+    name,
+    placeholder,
+    maxLength,
+    onChange,
+    style,
   } = props;
 
   const classes = mergeClasses(defaultClasses, props.classes);
 
   return (
-    <button
+    <input
       className={classes.root}
       style={style}
       type={type}
       value={value}
       id={id}
-      onClick={onClick}
-      autoFocus={autoFocus}
-      disabled={disabled}
-    >
-      {children}
-    </button>
+      name={name}
+      placeholder={placeholder}
+      maxLength={maxLength}
+      onChange={onChange}
+    />
   );
 };
-export default Button;
+
+export default Input;

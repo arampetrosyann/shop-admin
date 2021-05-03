@@ -1,11 +1,15 @@
 import React from "react";
-import Sections from "./containers/Sections";
+
+import { HashRouter as Router } from "react-router-dom";
+import Routes from "./routes";
 import "./styles/App.css";
 
 const App = () => {
   return (
     <div className="app">
-      <Sections />
+      <Router>
+        <Routes />
+      </Router>
     </div>
   );
 };

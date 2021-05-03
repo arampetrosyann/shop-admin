@@ -1,6 +1,5 @@
 .section {
   display: flex;
-  height: 100vh;
 }
 .menuSide {
   width: 20%;

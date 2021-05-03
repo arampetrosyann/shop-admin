@@ -2,19 +2,34 @@
   background-color: #000000;
   padding-left: 58px;
   color: #ffffff;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
 }
 .title {
   font-size: 25px;
   padding: 50px 0;
 }
+.menuBar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 .adminMenuButton {
-  composes: button from "../../components/Button/button.module.css";
+  composes: root from "../../components/Button/button.module.css";
   margin: 14px 0 0;
+  text-align: right;
+  width: 170px;
+  max-width: 170px;
+  border-radius: 6px 0 0 6px;
+  padding: 11px 20px;
 }
 .adminMenuButtonActive {
   composes: adminMenuButton;
-  composes: active from "../../components/Button/button.module.css";
+  background-color: #ffffff;
+  color: #000000;
+}
+.adminMenuButtonActive:hover {
+  color: #ffffff;
 }
 .submenu {
   text-align: right;

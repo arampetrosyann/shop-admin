@@ -13,7 +13,9 @@
     "sourceType": "module"
   },
   "settings": {
-    "version": "detect"
+    "react": {
+      "version": "latest"
+    }
   },
   "extends": [
     "eslint:recommended",
@@ -28,6 +30,7 @@
       "off"
     ],
     "no-console": "warn",
-    "eqeqeq": "warn"
+    "eqeqeq": "warn",
+    "react/prop-types": "off"
   }
 }

@@ -1,36 +1,30 @@
 import React from "react";
-import PropTypes from "prop-types";
-import mergeClasses from "../../helpers/mergeClasses";
 import defaultClasses from "./checkbox.module.css";
+import mergeClasses from "../../helpers/mergeClasses";
 
-function Checkbox(props) {
+const Checkbox = (props) => {
+  const { name, checked, title, style, ref, label, onChange } = props;
+
   const classes = mergeClasses(defaultClasses, props.classes);
+
   return (
-    <div className={classes.checkbox}>
+    <div className={classes.root} style={style}>
       <input
         type="checkbox"
-        id="checkbox"
-        name={props.name}
-        checked={props.checked}
-        onChange={props.onChange}
+        name={name}
+        id={name}
+        checked={checked}
+        ref={ref}
+        title={title}
+        style={style}
+        onChange={onChange}
+        className={classes.checkbox}
       />
-      <label htmlFor="checkbox">{props.children}</label>
+      <label className={classes.label} htmlFor={name}>
+        {label}
+      </label>
     </div>
   );
-}
-
-Checkbox.defaultProps = {
-  className: "",
-  name: "",
-  checked: false,
-  onChange: () => {},
-};
-
-Checkbox.propTypes = {
-  className: PropTypes.string,
-  checked: PropTypes.bool.isRequired,
-  children: PropTypes.node,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default Checkbox;

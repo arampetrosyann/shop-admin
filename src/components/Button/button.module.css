@@ -1,18 +1,17 @@
-.button {
+.root {
+  max-width: fit-content;
+  padding: 11px 36px;
   border: none;
-  outline: none;
-  border-radius: 5px;
-  padding: 15px;
-  text-align: right;
-  background-image: linear-gradient(to right, #77b700, #519b00);
+  background: #315e8f;
+  border-radius: 6px;
   color: #ffffff;
-  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
   cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s linear;
+  transition: 300ms;
 }
-.active {
-  composes: button;
-  background-image: linear-gradient(#ffffff, #ffffff);
-  color: #000000;
+
+.root:hover {
+  background-color: #1b1b1b;
 }

@@ -17,11 +17,11 @@ const AdminMenu = () => {
   return (
     <div className={classes.section}>
       <h2 className={classes.title}>Bigbox Admin</h2>
-      <div>
+      <div className={classes.menuBar}>
         <div>
           <Button
             classes={{
-              button:
+              root:
                 menuItemActive === 1
                   ? classes.adminMenuButtonActive
                   : classes.adminMenuButton,
@@ -80,7 +80,7 @@ const AdminMenu = () => {
         <div>
           <Button
             classes={{
-              button:
+              root:
                 menuItemActive === 2
                   ? classes.adminMenuButtonActive
                   : classes.adminMenuButton,
@@ -139,7 +139,7 @@ const AdminMenu = () => {
         <div>
           <Button
             classes={{
-              button:
+              root:
                 menuItemActive === 3
                   ? classes.adminMenuButtonActive
                   : classes.adminMenuButton,
@@ -198,7 +198,7 @@ const AdminMenu = () => {
         <div>
           <Button
             classes={{
-              button:
+              root:
                 menuItemActive === 4
                   ? classes.adminMenuButtonActive
                   : classes.adminMenuButton,
