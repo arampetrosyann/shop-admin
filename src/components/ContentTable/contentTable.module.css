@@ -1,0 +1,66 @@
+.section {
+  margin-top: 40px;
+  padding-bottom: 60px;
+}
+.section h4 {
+  margin-top: 10px;
+  color: rgb(71, 71, 71);
+  font-weight: 500;
+}
+.contentBox {
+  border: 1px solid rgb(197, 197, 197);
+  box-shadow: 0px 2px 10px #a5a5a5;
+  border-radius: 6px;
+  margin-top: 40px;
+}
+.contentBoxTitle {
+  display: flex;
+  justify-content: space-between;
+  background-color: #e0e0e0;
+  padding: 15px 20px;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+}
+.contentBoxContent {
+  background-color: #fff;
+  padding: 15px 20px;
+  border-radius: 0 0 6px 6px;
+}
+.contentBoxContent table {
+  width: 100%;
+  text-align: left;
+  border-spacing: 0;
+}
+.contentBoxContent table th,
+.contentBoxContent table td {
+  border-bottom: 1px solid rgb(197, 197, 197);
+  padding: 10px;
+}
+.contentBoxContent table tr:nth-child(even) {
+  background-color: #f4f4f4;
+}
+.pagination {
+  margin-top: 10px;
+}
+.previousPage,
+.nextPage {
+  border: none;
+  padding: 5px;
+  outline: none;
+  border-radius: 5px;
+  background-color: #315e8f;
+  color: #ffffff;
+  width: 80px;
+  cursor: pointer;
+  transition: 0.3s linear;
+  margin-right: 8px;
+}
+.previousPage:hover,
+.nextPage:hover {
+  background-color: #1f4977;
+}
+.disabled {
+  composes: previousPage;
+  background-color: #315e8f;
+  color: #d1d1d1;
+}
