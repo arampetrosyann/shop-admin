@@ -1,0 +1,28 @@
+.root {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
+  display: inline-block;
+  width: 16.5px;
+  height: 16.5px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  background-color: #ffffff;
+  -webkit-appearance: none;
+  transition: 300ms;
+}
+
+.checkbox:hover {
+  border-color: #000000c4;
+}
+
+.checkbox:checked {
+  border-color: #315e8f;
+  background-color: #315e8f;
+}
+
+.label {
+  margin-left: 9px;
+}

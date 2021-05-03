@@ -1,0 +1,11 @@
+.root {
+  padding: 11px 17px;
+  background: #ffffff;
+  border: 1.5px solid #1d1c1c;
+  border-radius: 8px;
+  outline: none;
+}
+
+.root:focus {
+  border-color: #315e8f;
+}

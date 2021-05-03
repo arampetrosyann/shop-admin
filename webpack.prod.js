@@ -50,4 +50,10 @@ module.exports = merge(common, {
     ],
   },
   performance: false,
+  optimization: {
+    minimize: true,
+    splitChunks: {
+      chunks: 'all',
+    },
+  }
 });
