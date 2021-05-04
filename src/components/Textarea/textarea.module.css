@@ -1,0 +1,17 @@
+.root {
+  composes: root from "../Input/input.module.css";
+  overflow-y: scroll;
+  resize: none;
+}
+
+.root:focus {
+  border-color: #315e8f;
+}
+
+.error {
+  composes: error from "../Input/input.module.css";
+}
+
+.errorMessage {
+  composes: errorMessage from "../Input/input.module.css";
+}
