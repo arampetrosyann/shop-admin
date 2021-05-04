@@ -1,0 +1,13 @@
+.root {
+  display: flex;
+}
+
+.menuSide {
+  width: 20%;
+}
+
+.contentSide {
+  width: 80%;
+  padding: 6px 14px;
+  background-color: #f0f0f0;
+}
