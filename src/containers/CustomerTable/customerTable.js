@@ -1,14 +1,11 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useLazyQuery } from "@apollo/client";
 import ContentTable from "../../components/ContentTable";
+import Layout from "../../components/Layout";
 import { GET_CUSTOMERS } from "../../graphql/queries";
-// import { useSelector, useDispatch } from "react-redux";
-// import { getCustomers } from "../../store/customers/action";
 import classes from "./customerTable.module.css";
 
 const CustomerTable = () => {
-  //   const dispatch = useDispatch();
-  //   const { getCustomer } = useSelector((state) => state);
   const [data, setData] = useState([]);
   const [getCustomers, { data: customersData }] = useLazyQuery(
     GET_CUSTOMERS
@@ -65,7 +62,15 @@ const CustomerTable = () => {
     []
   );
 
-  return <ContentTable name="John" columns={columns} data={data} />;
+  return (
+    <Layout>
+      <div className={classes.section}>
+        <h2>Welcome John</h2>
+        <h4>What du you like to do?</h4>
+        <ContentTable columns={columns} data={data} />
+      </div>
+    </Layout>
+  );
 };
 
 export default CustomerTable;
