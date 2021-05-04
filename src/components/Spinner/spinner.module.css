@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.root {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+.root::after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #08222f;
+  border-color: #08222f transparent #08222f transparent;
+  animation: root 1.2s linear infinite;
+}
+
+@keyframes root {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
