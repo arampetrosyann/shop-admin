@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useLazyQuery } from "@apollo/client";
 import ContentTable from "../../components/ContentTable";
+import MenuWrapper from "../../components/MenuWrapper";
 import Layout from "../../components/Layout";
 import { GET_CUSTOMERS } from "../../graphql/queries";
 import classes from "./customerTable.module.css";
@@ -63,13 +64,15 @@ const CustomerTable = () => {
   );
 
   return (
-    <Layout>
-      <div className={classes.section}>
-        <h2>Welcome John</h2>
-        <h4>What du you like to do?</h4>
-        <ContentTable columns={columns} data={data} />
-      </div>
-    </Layout>
+    <MenuWrapper>
+      <Layout>
+        <div className={classes.section}>
+          <h2>Welcome John</h2>
+          <h4>What du you like to do?</h4>
+          <ContentTable columns={columns} data={data} />
+        </div>
+      </Layout>
+    </MenuWrapper>
   );
 };
 
