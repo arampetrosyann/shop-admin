@@ -192,6 +192,21 @@
 .option__3Zbi4m7bI {
 }
 
+.root__37P8KmJgk {
+  overflow-y: scroll;
+  resize: none;
+}
+
+.root__37P8KmJgk:focus {
+  border-color: #315e8f;
+}
+
+.error__1k1cM5xf4 {
+}
+
+.errorMessage__1WgQ2Ak-_ {
+}
+
 .section__34nGgXbAp {
   background-color: #000000;
   padding-left: 58px;
@@ -278,10 +293,36 @@
   background-color: #f0f0f0;
 }
 
+.root__F5OzCjk_J {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+}
+
+.heading__3IdyKrl5W {
+  padding: 6px 0;
+  text-align: center;
+}
+
+.root__2pWJU0eqN {
+  display: flex;
+}
+
+.menuSide__1cvLkXp2R {
+  width: 20%;
+}
+
+.contentSide__3RKHSL4Sr {
+  width: 80%;
+  padding: 6px 14px;
+  background-color: #f0f0f0;
+}
+
 .app {
   width: 100%;
   min-height: 100vh;
 }
 
 
-/*# sourceMappingURL=main.069a013e9fb62ec65e01.css.map*/
+/*# sourceMappingURL=main.c9b17fa3a8b451fb9193.css.map*/
