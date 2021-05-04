@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { HashRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 import {
@@ -20,6 +21,8 @@ const httpLink = new HttpLink({
 const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext({
     headers: {
+      authorization:
+        "Bearer " + localStorage.getItem("authorization") || "",
       locale: "hy_AM",
     },
   });
@@ -36,7 +39,9 @@ ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <Provider store={store}>
-        <App />
+        <Router>
+          <App />
+        </Router>
       </Provider>
     </ApolloProvider>
   </React.StrictMode>,
