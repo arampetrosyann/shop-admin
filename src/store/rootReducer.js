@@ -2,4 +2,6 @@ import { combineReducers } from "redux";
 import productData from "./productData/reducer";
 import getCustomer from "./customers/reducer";
 
-export default combineReducers({ productData, getCustomer });
+import admin from "./user/reducer";
+
+export default combineReducers({ productData, getCustomer, admin });

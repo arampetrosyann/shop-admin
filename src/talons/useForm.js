@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import Input from "../components/Input";
 import Checkbox from "../components/Checkbox";
 import Select from "../components/Select";
+import Textarea from "../components/Textarea";
 
 const useForm = () => {
   const getField = useCallback((field, props) => {
@@ -16,6 +17,9 @@ const useForm = () => {
         break;
       case "select":
         result = <Select {...props} />;
+        break;
+      case "textarea":
+        result = <Textarea {...props} />;
         break;
       default:
         result = <Input {...props} />;
