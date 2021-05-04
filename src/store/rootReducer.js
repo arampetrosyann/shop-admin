@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
 import productData from "./productData/reducer";
-import user from "./user/reducer";
+import admin from "./user/reducer";
 
-export default combineReducers({ productData, user });
+export default combineReducers({ productData, admin });

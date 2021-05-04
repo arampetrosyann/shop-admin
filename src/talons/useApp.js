@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useApolloClient } from "@apollo/client";
 import { useDispatch } from "react-redux";
-import { setUserData } from "../store/user/action";
+import { setAdminData } from "../store/user/action";
 import { GET_ADMIN } from "../graphql/queries";
 
 const useApp = (authorization) => {
@@ -23,7 +23,7 @@ const useApp = (authorization) => {
         const { firstname, lastname } = await res.data.admin;
 
         dispatch(
-          setUserData({
+          setAdminData({
             firstName: firstname,
             lastName: lastname,
             signedIn: true,
@@ -32,7 +32,7 @@ const useApp = (authorization) => {
         );
       } else {
         dispatch(
-          setUserData({
+          setAdminData({
             isDataFetched: true,
           })
         );

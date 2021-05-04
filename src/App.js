@@ -6,7 +6,7 @@ import Spinner from "./components/Spinner";
 import useApp from "./talons/useApp";
 
 const App = () => {
-  const { isDataFetched } = useSelector((state) => state.user);
+  const { isDataFetched } = useSelector((state) => state.admin);
 
   useApp("authorization");
 

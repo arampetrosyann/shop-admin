@@ -6,7 +6,7 @@ import AddProduct from "../pages/AddProduct";
 import { useSelector } from "react-redux";
 
 const Routes = () => {
-  const { signedIn } = useSelector((state) => state.user);
+  const { signedIn } = useSelector((state) => state.admin);
 
   return (
     <Switch>

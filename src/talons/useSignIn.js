@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { useMutation } from "@apollo/client";
 import { useDispatch } from "react-redux";
 import { SIGN_IN } from "../graphql/mutations";
-import { setUserData } from "../store/user/action";
+import { setAdminData } from "../store/user/action";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Սխալ էլ. հասցե").required(),
@@ -30,7 +30,7 @@ const useSignIn = () => {
       const { firstname, lastname, token } = await res.data.adminLogin;
 
       await dispatch(
-        setUserData({
+        setAdminData({
           firstName: firstname,
           lastName: lastname,
           signedIn: true,
