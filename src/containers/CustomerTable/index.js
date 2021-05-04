@@ -1,1 +1,1 @@
-export {default} from './customerTable';
+export { default } from "./customerTable";

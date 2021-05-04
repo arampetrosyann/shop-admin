@@ -1,6 +1,7 @@
 import React from "react";
 import AdminMenu from "../../containers/AdminMenu";
 import ProductTable from "../../containers/ProductTable";
+import CustomerTable from "../../containers/CustomerTable";
 import classes from "./home.module.css";
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
       </div>
       <div className={classes.contentSide}>
         <ProductTable />
+        <CustomerTable />
       </div>
     </div>
   );

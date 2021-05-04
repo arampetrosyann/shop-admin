@@ -27,3 +27,15 @@ export const GET_PRODUCTS_DATA = gql`
     }
   }
 `;
+
+export const GET_CUSTOMERS = gql`
+  query Customer {
+    customers {
+      id
+      firstname
+      lastname
+      email
+      token
+    }
+  }
+`;

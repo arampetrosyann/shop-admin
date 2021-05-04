@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import ContentTable from "../../components/ContentTable";
-import Checkbox from "../../components/Checkbox";
 import image1 from "../../assets/images/best-gift.jpg";
 import image2 from "../../assets/images/book-author.jpg";
 import image3 from "../../assets/images/coffee-cup.jpg";
@@ -14,107 +13,105 @@ const ProductTable = () => {
     history.push("/");
   };
 
-  const data = useMemo(
-    () => [
-      {
-        id: 0,
-        column1: "Lorem, ipsum dolor.",
-        column2: 100,
-        column3: "Lorem, ipsum dolor.",
-        column4: "Lorem ipsum.",
-        column5: image1,
-      },
-      {
-        id: 1,
-        column1: "Lorem, ipsum dolor.",
-        column2: 200,
-        column3: "Lorem, ipsum dolor.",
-        column4: "Lorem ipsum.",
-        column5: image2,
-      },
-      {
-        id: 2,
-        column1: "Lorem, ipsum dolor.",
-        column2: 500,
-        column3: "Lorem, ipsum dolor.",
-        column4: "Lorem ipsum.",
-        column5: image3,
-      },
-      {
-        id: 3,
-        column1: "Lorem, ipsum dolor.",
-        column2: 400,
-        column3: "Lorem, ipsum dolor.",
-        column4: "Lorem ipsum.",
-        column5: image3,
-      },
-      {
-        id: 4,
-        column1: "Lorem, ipsum dolor.",
-        column2: 400,
-        column3: "Lorem, ipsum dolor.",
-        column4: "Lorem ipsum.",
-        column5: image2,
-      },
-      {
-        id: 5,
-        column1: "Lorem, ipsum dolor.",
-        column2: 200,
-        column3: "Lorem, ipsum dolor.",
-        column4: "Lorem ipsum.",
-        column5: image1,
-      },
-      {
-        id: 6,
-        column1: "Lorem, ipsum dolor.",
-        column2: 300,
-        column3: "Lorem, ipsum dolor.",
-        column4: "Lorem ipsum.",
-        column5: image1,
-      },
-      {
-        id: 7,
-        column1: "Lorem, ipsum dolor.",
-        column2: 900,
-        column3: "Lorem, ipsum dolor.",
-        column4: "Lorem ipsum.",
-        column5: image2,
-      },
-      {
-        id: 8,
-        column1: "Lorem, ipsum dolor.",
-        column2: 500,
-        column3: "Lorem, ipsum dolor.",
-        column4: "Lorem ipsum.",
-        column5: image3,
-      },
-      {
-        id: 9,
-        column1: "Lorem, ipsum dolor.",
-        column2: 600,
-        column3: "Lorem, ipsum dolor.",
-        column4: "Lorem ipsum.",
-        column5: image3,
-      },
-      {
-        id: 10,
-        column1: "Lorem, ipsum dolor.",
-        column2: 700,
-        column3: "Lorem, ipsum dolor.",
-        column4: "Lorem ipsum.",
-        column5: image2,
-      },
-      {
-        id: 11,
-        column1: "Lorem, ipsum dolor.",
-        column2: 800,
-        column3: "Lorem, ipsum dolor.",
-        column4: "Lorem ipsum.",
-        column5: image1,
-      },
-    ],
-    []
-  );
+  const data = useMemo(() => [
+    {
+      id: 0,
+      column1: "Lorem, ipsum dolor.",
+      column2: 100,
+      column3: "Lorem, ipsum dolor.",
+      column4: "Lorem ipsum.",
+      column5: image1,
+    },
+    {
+      id: 1,
+      column1: "Lorem, ipsum dolor.",
+      column2: 200,
+      column3: "Lorem, ipsum dolor.",
+      column4: "Lorem ipsum.",
+      column5: image2,
+    },
+    {
+      id: 2,
+      column1: "Lorem, ipsum dolor.",
+      column2: 500,
+      column3: "Lorem, ipsum dolor.",
+      column4: "Lorem ipsum.",
+      column5: image3,
+    },
+    {
+      id: 3,
+      column1: "Lorem, ipsum dolor.",
+      column2: 400,
+      column3: "Lorem, ipsum dolor.",
+      column4: "Lorem ipsum.",
+      column5: image3,
+    },
+    {
+      id: 4,
+      column1: "Lorem, ipsum dolor.",
+      column2: 400,
+      column3: "Lorem, ipsum dolor.",
+      column4: "Lorem ipsum.",
+      column5: image2,
+    },
+    {
+      id: 5,
+      column1: "Lorem, ipsum dolor.",
+      column2: 200,
+      column3: "Lorem, ipsum dolor.",
+      column4: "Lorem ipsum.",
+      column5: image1,
+    },
+    {
+      id: 6,
+      column1: "Lorem, ipsum dolor.",
+      column2: 300,
+      column3: "Lorem, ipsum dolor.",
+      column4: "Lorem ipsum.",
+      column5: image1,
+    },
+    {
+      id: 7,
+      column1: "Lorem, ipsum dolor.",
+      column2: 900,
+      column3: "Lorem, ipsum dolor.",
+      column4: "Lorem ipsum.",
+      column5: image2,
+    },
+    {
+      id: 8,
+      column1: "Lorem, ipsum dolor.",
+      column2: 500,
+      column3: "Lorem, ipsum dolor.",
+      column4: "Lorem ipsum.",
+      column5: image3,
+    },
+    {
+      id: 9,
+      column1: "Lorem, ipsum dolor.",
+      column2: 600,
+      column3: "Lorem, ipsum dolor.",
+      column4: "Lorem ipsum.",
+      column5: image3,
+    },
+    {
+      id: 10,
+      column1: "Lorem, ipsum dolor.",
+      column2: 700,
+      column3: "Lorem, ipsum dolor.",
+      column4: "Lorem ipsum.",
+      column5: image2,
+    },
+    {
+      id: 11,
+      column1: "Lorem, ipsum dolor.",
+      column2: 800,
+      column3: "Lorem, ipsum dolor.",
+      column4: "Lorem ipsum.",
+      column5: image1,
+    },
+  ]);
+
   const columns = useMemo(
     () => [
       {
@@ -174,7 +171,6 @@ const ProductTable = () => {
     ],
     []
   );
-
   return <ContentTable name="John" columns={columns} data={data} />;
 };
 
