@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import SignIn from "../pages/SignIn";
 import Home from "../pages/Home";
 import AddProduct from "../pages/AddProduct";
+import AddUser from "../pages/AddUser";
 import { useSelector } from "react-redux";
 
 const Routes = () => {
@@ -17,6 +18,9 @@ const Routes = () => {
           </Route>
           <Route path="/add-product">
             <AddProduct />
+          </Route>
+          <Route path="/add-customer">
+            <AddUser />
           </Route>
         </>
       ) : (
