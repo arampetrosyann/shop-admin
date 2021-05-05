@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import CustomerTable from "../containers/CustomerTable";
 import ProductTable from "../containers/ProductTable";
 import AddProduct from "../pages/AddProduct";
+import AddUser from "../pages/AddUser";
 import { useSelector } from "react-redux";
 
 const Routes = () => {
@@ -25,6 +26,9 @@ const Routes = () => {
           </Route>
           <Route path="/customers">
             <CustomerTable />
+          </Route>
+          <Route path="/add-customer">
+            <AddUser />
           </Route>
         </>
       ) : (

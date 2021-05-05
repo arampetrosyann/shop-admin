@@ -25,12 +25,10 @@ const CustomerTable = () => {
 
   const handleCustomerEdit = () => {
     // history.push("/");
-    console.log(99);
   };
 
   const handleCustomerRemove = () => {
     // removeCustomers();
-    console.log(88);
   };
 
   const columns = useMemo(
@@ -88,7 +86,7 @@ const CustomerTable = () => {
         <ContentTable
           columns={columns}
           data={data}
-          addProduct="/add-product"
+          addProduct="/add-customer"
         />
       </div>
     </MenuWrapper>

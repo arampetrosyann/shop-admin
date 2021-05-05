@@ -12,6 +12,7 @@ const Input = (props) => {
     maxLength,
     error = "",
     onChange,
+    onBlur,
     style,
   } = props;
 
@@ -31,6 +32,7 @@ const Input = (props) => {
         placeholder={placeholder}
         maxLength={maxLength}
         onChange={onChange}
+        onBlur={onBlur}
       />
       {error ? <p className={classes.errorMessage}>{error}</p> : null}
     </>

@@ -12,6 +12,11 @@
   transition: 300ms;
 }
 
-.root:hover {
+.root:hover:enabled {
   background-color: #1b1b1b;
+}
+
+.root:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
