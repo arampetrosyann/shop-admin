@@ -19,6 +19,16 @@ export const GET_USERS = gql`
   }
 `;
 
+export const GET_USER = gql`
+  query($id: ID!) {
+    adminCustomer(id: $id) {
+      firstname
+      lastname
+      email
+    }
+  }
+`;
+
 export const GET_PRODUCTS_DATA = gql`
   query GetProductsData($categoryId: ID!) {
     getCategoryProducts(categoryId: $categoryId) {
