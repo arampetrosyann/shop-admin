@@ -18,6 +18,17 @@
   padding-bottom: 18px;
 }
 
+.iconSignIn {
+  font-family: icomoon;
+  color: #000000;
+  font-size: 80px;
+  opacity: 0.8;
+}
+
+.iconSignIn::before {
+  content: "\e971";
+}
+
 .submitBtn {
   composes: submitBtn from "../../components/Form/form.module.css";
   width: 100%;
