@@ -2,14 +2,18 @@ import React, { useEffect, useState, useMemo } from "react";
 import { useLazyQuery } from "@apollo/client";
 import ContentTable from "../../components/ContentTable";
 import MenuWrapper from "../../components/MenuWrapper";
-import Layout from "../../components/Layout";
 import { GET_CUSTOMERS } from "../../graphql/queries";
+import { DELETE_CUSTOMER } from "../../graphql/mutations";
 import classes from "./customerTable.module.css";
 
 const CustomerTable = () => {
   const [data, setData] = useState([]);
   const [getCustomers, { data: customersData }] = useLazyQuery(
     GET_CUSTOMERS
+  );
+
+  const [removeCustomers, { data: removeCustomersData }] = useLazyQuery(
+    DELETE_CUSTOMER
   );
 
   useEffect(() => {
@@ -20,7 +24,13 @@ const CustomerTable = () => {
   }, [customersData]);
 
   const handleCustomerEdit = () => {
-    history.push("/");
+    // history.push("/");
+    console.log(99);
+  };
+
+  const handleCustomerRemove = () => {
+    // removeCustomers();
+    console.log(88);
   };
 
   const columns = useMemo(
@@ -44,20 +54,27 @@ const CustomerTable = () => {
       {
         Header: "",
         accessor: "column6",
-        Cell: (row) => (
-          <div
-            style={{
-              color: row.row.values.column2 ? "blue" : "red",
-              fontWeight: 600,
-            }}
-          >
-            <span
-              className={classes.edit}
-              onClick={handleCustomerEdit}
-            ></span>
-            <span className={classes.remove}></span>
-          </div>
-        ),
+        Cell: (row) => {
+          console.log(row, 88);
+          return (
+            <div
+              onClick={handleCustomerRemove}
+              style={{
+                color: row.row.values.column2 ? "blue" : "red",
+                fontWeight: 600,
+              }}
+            >
+              <span
+                className={classes.edit}
+                onClick={handleCustomerEdit}
+              ></span>
+              <span
+                className={classes.remove}
+                onClick={handleCustomerRemove}
+              ></span>
+            </div>
+          );
+        },
       },
     ],
     []
@@ -65,13 +82,15 @@ const CustomerTable = () => {
 
   return (
     <MenuWrapper>
-      <Layout>
-        <div className={classes.section}>
-          <h2>Welcome John</h2>
-          <h4>What du you like to do?</h4>
-          <ContentTable columns={columns} data={data} />
-        </div>
-      </Layout>
+      <div className={classes.section}>
+        <h2>Welcome John</h2>
+        <h4>What du you like to do?</h4>
+        <ContentTable
+          columns={columns}
+          data={data}
+          addProduct="/add-product"
+        />
+      </div>
     </MenuWrapper>
   );
 };

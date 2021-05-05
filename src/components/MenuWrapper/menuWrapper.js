@@ -1,7 +1,8 @@
 import React from "react";
+import AdminMenu from "../../containers/AdminMenu";
+import Layout from "../Layout";
 import defaultClasses from "./menuWrapper.module.css";
 import mergeClasses from "../../helpers/mergeClasses";
-import AdminMenu from "../../containers/AdminMenu";
 
 const MenuWrapper = (props) => {
   const { children } = props;
@@ -13,7 +14,9 @@ const MenuWrapper = (props) => {
       <div className={classes.menuSide}>
         <AdminMenu />
       </div>
-      <div className={classes.contentSide}>{children}</div>
+      <div className={classes.contentSide}>
+        <Layout>{children}</Layout>
+      </div>
     </div>
   );
 };

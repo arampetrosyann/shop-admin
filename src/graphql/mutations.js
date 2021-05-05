@@ -9,3 +9,9 @@ export const SIGN_IN = gql`
     }
   }
 `;
+
+export const DELETE_CUSTOMER = gql`
+  mutation DeleteCustomer($id: ID!) {
+    adminDeleteCustomer(id: $id)
+  }
+`;

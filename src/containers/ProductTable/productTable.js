@@ -175,13 +175,11 @@ const ProductTable = () => {
   );
   return (
     <MenuWrapper>
-      <Layout>
-        <div className={classes.section}>
-          <h2>Welcome John</h2>
-          <h4>What du you like to do?</h4>
-          <ContentTable columns={columns} data={data} />
-        </div>
-      </Layout>
+      <div className={classes.section}>
+        <h2>Welcome John</h2>
+        <h4>What du you like to do?</h4>
+        <ContentTable columns={columns} data={data} />
+      </div>
     </MenuWrapper>
   );
 };

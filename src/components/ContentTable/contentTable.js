@@ -6,6 +6,7 @@ import {
   useRowSelect,
   usePagination,
 } from "react-table";
+import { Link } from "react-router-dom";
 import Checkbox from "../../components/Checkbox";
 import classes from "./contentTable.module.css";
 import SearchInput from "../SearchInput";
@@ -28,6 +29,7 @@ const ContentTable = (props) => {
     setPageSize,
     state,
     setGlobalFilter,
+    selectedFlatRows,
   } = useTable(
     {
       columns: props.columns,
@@ -61,11 +63,34 @@ const ContentTable = (props) => {
 
   return (
     <div className={classes.section}>
-      <SearchInput
-        value={globalFilter}
-        onChange={setGlobalFilter}
-        placeholder="Search..."
-      />
+      <div className={classes.quickActions}>
+        <div className={classes.quickActionsButtons}>
+          <Link
+            to={props.addProduct}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <button className={classes.addButton}>
+              <span className={classes.add}></span>
+            </button>
+          </Link>
+          {/* <Link to={props.addProduct}>
+            <button
+              className={
+                selectedFlatRows.length === rows.length
+                  ? classes.removeButton
+                  : classes.disabledRemoveButton
+              }
+            >
+              <span className={classes.removeAll}></span>
+            </button>
+          </Link> */}
+        </div>
+        <SearchInput
+          value={globalFilter}
+          onChange={setGlobalFilter}
+          placeholder="Search..."
+        />
+      </div>
       <div className={classes.contentBox}>
         <div className={classes.contentBoxTitle}>
           <h3>Content Box</h3>
