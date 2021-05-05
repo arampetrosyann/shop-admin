@@ -9,3 +9,21 @@ export const SIGN_IN = gql`
     }
   }
 `;
+
+export const ADD_CUSTOMER = gql`
+  mutation(
+    $email: String
+    $password: String
+    $firstname: String
+    $lastname: String
+  ) {
+    adminAddCustomer(
+      customerData: {
+        email: $email
+        password: $password
+        firstname: $firstname
+        lastname: $lastname
+      }
+    )
+  }
+`;
