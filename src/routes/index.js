@@ -17,7 +17,7 @@ const Routes = () => {
       {signedIn ? (
         <>
           <Route exact path="/">
-            <CustomerTable />
+            <Home />
           </Route>
           <Route path="/products">
             <ProductTable />
@@ -26,7 +26,7 @@ const Routes = () => {
             <AddProduct />
           </Route>
           <Route path="/customers">
-            <Home />
+            <CustomerTable />
           </Route>
           <Route path="/add-customer">
             <AddUser />

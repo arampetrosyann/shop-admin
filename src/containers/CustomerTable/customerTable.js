@@ -8,29 +8,27 @@ import { DELETE_CUSTOMER } from "../../graphql/mutations";
 import classes from "./customerTable.module.css";
 
 const CustomerTable = () => {
-  const [data, setData] = useState([]);
   const [getCustomers, { data: customersData }] = useLazyQuery(
-    GET_CUSTOMERS
+    GET_CUSTOMERS,
+    {
+      fetchPolicy: "no-cache",
+    }
   );
 
-  const [removeCustomers, { data: removeCustomersData }] = useMutation(
-    DELETE_CUSTOMER
-  );
+  const [removeCustomers] = useMutation(DELETE_CUSTOMER);
 
   useEffect(() => {
     getCustomers();
-    if (customersData) {
-      setData(customersData.customers);
-    }
-  }, [customersData]);
+  }, []);
 
-  const handleCustomerRemove = (id) => {
-    removeCustomers({
+  const handleCustomerRemove = async (id) => {
+    await removeCustomers({
       variables: {
         id,
       },
     });
-    setData((data) => data.filter((el) => el.id !== id));
+
+    getCustomers();
   };
 
   const columns = useMemo(
@@ -82,7 +80,7 @@ const CustomerTable = () => {
         <h4>What du you like to do?</h4>
         <ContentTable
           columns={columns}
-          data={data}
+          data={customersData ? customersData.customers : []}
           addProduct="/add-customer"
         />
       </div>

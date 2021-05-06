@@ -73,17 +73,15 @@ const ContentTable = (props) => {
               <span className={classes.add}></span>
             </button>
           </Link>
-          {/* <Link to={props.addProduct}>
-            <button
-              className={
-                selectedFlatRows.length === rows.length
-                  ? classes.removeButton
-                  : classes.disabledRemoveButton
-              }
-            >
-              <span className={classes.removeAll}></span>
-            </button>
-          </Link> */}
+          <button
+            className={
+              selectedFlatRows.length === rows.length
+                ? classes.removeButton
+                : classes.disabledRemoveButton
+            }
+          >
+            <span className={classes.removeAll}></span>
+          </button>
         </div>
         <SearchInput
           value={globalFilter}

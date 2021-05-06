@@ -69,6 +69,7 @@
   border-radius: 6px;
   margin-top: 20px;
   width: 100%;
+  overflow: hidden;
 }
 .contentBoxTitle {
   display: flex;

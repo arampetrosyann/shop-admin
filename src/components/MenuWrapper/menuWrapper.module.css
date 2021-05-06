@@ -1,5 +1,8 @@
 .root {
   display: flex;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1550px;
 }
 
 .menuSide {
@@ -8,6 +11,6 @@
 
 .contentSide {
   width: 80%;
-  padding: 6px 14px;
+  padding: 6px 54px;
   background-color: #f0f0f0;
 }
