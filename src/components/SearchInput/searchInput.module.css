@@ -1,0 +1,4 @@
+.searchInput {
+  composes: root from "../Input/input.module.css";
+  width: 300px;
+}

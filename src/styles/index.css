@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+#root {
+  min-height: 100vh;
+}
+
 @font-face {
   font-family: "icomoon";
   src: url("../assets/fonts/icomoon/icomoon.eot?jitbdx");

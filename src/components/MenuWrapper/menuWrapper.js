@@ -1,7 +1,7 @@
 import React from "react";
+import AdminMenu from "../../containers/AdminMenu";
 import defaultClasses from "./menuWrapper.module.css";
 import mergeClasses from "../../helpers/mergeClasses";
-import AdminMenu from "../../containers/AdminMenu";
 
 const MenuWrapper = (props) => {
   const { children } = props;

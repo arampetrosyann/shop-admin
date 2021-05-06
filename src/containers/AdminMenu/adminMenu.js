@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Button from "../../components/Button";
 import classes from "./adminMenu.module.css";
 
@@ -6,8 +7,13 @@ const AdminMenu = () => {
   const [menuItemActive, setMenuItemActive] = useState(null);
   const [subMenuItemActive, setSubMenuItemActive] = useState("");
 
+  const history = useHistory();
+
+  const changePage = ["products", "customers"];
+
   const handleMenuItem = (n) => {
     setMenuItemActive((prev) => (prev === n ? null : n));
+    history.push(`./${changePage[n]}`);
   };
 
   const handleSubMenuItem = (n) => {
@@ -22,15 +28,15 @@ const AdminMenu = () => {
           <Button
             classes={{
               root:
-                menuItemActive === 1
+                menuItemActive === 0
                   ? classes.adminMenuButtonActive
                   : classes.adminMenuButton,
             }}
-            onClick={() => handleMenuItem(1)}
+            onClick={() => handleMenuItem(0)}
           >
-            Dashboard
+            Products
           </Button>
-          {menuItemActive === 1 && (
+          {menuItemActive === 0 && (
             <div className={classes.submenu}>
               <ul>
                 <li
@@ -41,7 +47,7 @@ const AdminMenu = () => {
                   }
                   onClick={() => handleSubMenuItem("article1")}
                 >
-                  Manage Articles
+                  Bestsellers
                 </li>
                 <li
                   className={
@@ -51,27 +57,7 @@ const AdminMenu = () => {
                   }
                   onClick={() => handleSubMenuItem("article2")}
                 >
-                  Manage Articles
-                </li>
-                <li
-                  className={
-                    subMenuItemActive === "article3"
-                      ? classes.active
-                      : null
-                  }
-                  onClick={() => handleSubMenuItem("article3")}
-                >
-                  Manage Articles
-                </li>
-                <li
-                  className={
-                    subMenuItemActive === "article4"
-                      ? classes.active
-                      : null
-                  }
-                  onClick={() => handleSubMenuItem("article4")}
-                >
-                  Manage Articles
+                  New Arrivals
                 </li>
               </ul>
             </div>
@@ -81,15 +67,15 @@ const AdminMenu = () => {
           <Button
             classes={{
               root:
-                menuItemActive === 2
+                menuItemActive === 1
                   ? classes.adminMenuButtonActive
                   : classes.adminMenuButton,
             }}
-            onClick={() => handleMenuItem(2)}
+            onClick={() => handleMenuItem(1)}
           >
-            Dashboard
+            Customers
           </Button>
-          {menuItemActive === 2 && (
+          {menuItemActive === 1 && (
             <div className={classes.submenu}>
               <ul>
                 <li
@@ -140,15 +126,15 @@ const AdminMenu = () => {
           <Button
             classes={{
               root:
-                menuItemActive === 3
+                menuItemActive === 2
                   ? classes.adminMenuButtonActive
                   : classes.adminMenuButton,
             }}
-            onClick={() => handleMenuItem(3)}
+            onClick={() => handleMenuItem(2)}
           >
             Dashboard
           </Button>
-          {menuItemActive === 3 && (
+          {menuItemActive === 2 && (
             <div className={classes.submenu}>
               <ul>
                 <li
@@ -199,15 +185,15 @@ const AdminMenu = () => {
           <Button
             classes={{
               root:
-                menuItemActive === 4
+                menuItemActive === 3
                   ? classes.adminMenuButtonActive
                   : classes.adminMenuButton,
             }}
-            onClick={() => handleMenuItem(4)}
+            onClick={() => handleMenuItem(3)}
           >
             Dashboard
           </Button>
-          {menuItemActive === 4 && (
+          {menuItemActive === 3 && (
             <div className={classes.submenu}>
               <ul>
                 <li

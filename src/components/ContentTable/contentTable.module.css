@@ -1,0 +1,124 @@
+.section {
+  margin-top: 40px;
+  padding-bottom: 60px;
+}
+.quickActions {
+  display: flex;
+  justify-content: space-between;
+}
+.quickActionsButtons {
+  display: flex;
+}
+.addButton,
+.removeButton {
+  border: 1px solid #1d1c1c;
+  border-radius: 6px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.removeButton {
+  margin-left: 10px;
+}
+.addButton:hover .add {
+  font-size: 18px;
+  color: #031c38;
+}
+.removeButton:hover .removeAll {
+  font-size: 18px;
+  color: rgb(92, 1, 1);
+}
+.add {
+  font-family: "icomoon";
+  font-size: 14px;
+  transform: rotate(45deg);
+  display: inline-block;
+  transition: 0.3s linear;
+}
+.removeAll {
+  font-family: "icomoon";
+  font-size: 14px;
+  display: inline-block;
+  transition: 0.3s linear;
+}
+.add::after {
+  content: "\ea0f";
+  color: #1f4977;
+}
+.removeAll::after {
+  content: "\ea0f";
+  color: rgb(177, 2, 2);
+}
+.disabledRemoveButton {
+  margin-left: 10px;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+}
+.contentBox {
+  border: 1px solid rgb(197, 197, 197);
+  box-shadow: 0px 2px 10px #a5a5a5;
+  border-radius: 6px;
+  margin-top: 20px;
+  width: 100%;
+  overflow: hidden;
+}
+.contentBoxTitle {
+  display: flex;
+  justify-content: space-between;
+  background-color: #e0e0e0;
+  padding: 15px 20px;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+}
+.contentBoxContent {
+  background-color: #fff;
+  padding: 15px 20px;
+  border-radius: 0 0 6px 6px;
+}
+.contentBoxContent table {
+  width: 100%;
+  text-align: left;
+  border-spacing: 0;
+}
+.contentBoxContent table th,
+.contentBoxContent table td {
+  border-bottom: 1px solid rgb(197, 197, 197);
+  padding: 10px;
+}
+.contentBoxContent table tr:nth-child(even) {
+  background-color: #f4f4f4;
+}
+.pagination {
+  margin-top: 10px;
+}
+.previousPage,
+.nextPage {
+  border: none;
+  padding: 5px;
+  outline: none;
+  border-radius: 5px;
+  background-color: #315e8f;
+  color: #ffffff;
+  width: 80px;
+  cursor: pointer;
+  transition: 0.3s linear;
+  margin-right: 8px;
+}
+.previousPage:hover,
+.nextPage:hover {
+  background-color: #1f4977;
+}
+.disabled {
+  composes: previousPage;
+  background-color: #315e8f;
+  color: #d1d1d1;
+}

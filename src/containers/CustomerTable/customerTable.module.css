@@ -1,0 +1,32 @@
+.section {
+  margin-top: 40px;
+  padding-bottom: 60px;
+}
+.section h4 {
+  margin-top: 10px;
+  color: rgb(71, 71, 71);
+  font-weight: 500;
+}
+.edit,
+.remove {
+  font-family: "icomoon";
+  margin-right: 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.edit::after {
+  content: "\e905";
+  color: rgb(165, 165, 1);
+}
+.remove::after {
+  content: "\ea0f";
+  color: rgb(177, 2, 2);
+}
+.tableImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+.tableImage > img {
+  width: 100%;
+}
