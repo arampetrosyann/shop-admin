@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { useLazyQuery } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import ContentTable from "../../components/ContentTable";
 import MenuWrapper from "../../components/MenuWrapper";
 import { GET_CUSTOMERS } from "../../graphql/queries";
@@ -12,9 +12,11 @@ const CustomerTable = () => {
     GET_CUSTOMERS
   );
 
-  const [removeCustomers, { data: removeCustomersData }] = useLazyQuery(
+  const [removeCustomers, { data: removeCustomersData }] = useMutation(
     DELETE_CUSTOMER
   );
+
+  console.log(data, 33);
 
   useEffect(() => {
     getCustomers();
@@ -27,8 +29,13 @@ const CustomerTable = () => {
     // history.push("/");
   };
 
-  const handleCustomerRemove = () => {
-    // removeCustomers();
+  const handleCustomerRemove = (id) => {
+    removeCustomers({
+      variables: {
+        id,
+      },
+    });
+    setData((data) => data.filter((el) => el.id !== id));
   };
 
   const columns = useMemo(
@@ -53,22 +60,15 @@ const CustomerTable = () => {
         Header: "",
         accessor: "column6",
         Cell: (row) => {
-          console.log(row, 88);
           return (
-            <div
-              onClick={handleCustomerRemove}
-              style={{
-                color: row.row.values.column2 ? "blue" : "red",
-                fontWeight: 600,
-              }}
-            >
+            <div>
               <span
                 className={classes.edit}
                 onClick={handleCustomerEdit}
               ></span>
               <span
                 className={classes.remove}
-                onClick={handleCustomerRemove}
+                onClick={() => handleCustomerRemove(row.row.original.id)}
               ></span>
             </div>
           );

@@ -8,7 +8,6 @@ export const getCustomers = () => {
       const getCustomer = await client.query({
         query: GET_CUSTOMERS,
       });
-      console.log(getCustomer, 88);
       dispatch({
         type: types.GET_CUSTOMERS,
         payload: {

@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import { useHistory } from "react-router-dom";
-import Layout from "../../components/Layout";
 import MenuWrapper from "../../components/MenuWrapper";
 import ContentTable from "../../components/ContentTable";
 import image1 from "../../assets/images/best-gift.jpg";
@@ -178,7 +177,11 @@ const ProductTable = () => {
       <div className={classes.section}>
         <h2>Welcome John</h2>
         <h4>What du you like to do?</h4>
-        <ContentTable columns={columns} data={data} />
+        <ContentTable
+          columns={columns}
+          data={data}
+          addProduct="/add-product"
+        />
       </div>
     </MenuWrapper>
   );
