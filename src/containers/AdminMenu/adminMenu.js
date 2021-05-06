@@ -34,7 +34,7 @@ const AdminMenu = () => {
             }}
             onClick={() => handleMenuItem(0)}
           >
-            Products
+            Ապրանքներ
           </Button>
           {menuItemActive === 0 && (
             <div className={classes.submenu}>
@@ -73,7 +73,7 @@ const AdminMenu = () => {
             }}
             onClick={() => handleMenuItem(1)}
           >
-            Customers
+            հաճախորդներ
           </Button>
           {menuItemActive === 1 && (
             <div className={classes.submenu}>

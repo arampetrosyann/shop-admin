@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import MenuWrapper from "../../components/MenuWrapper";
 import ContentTable from "../../components/ContentTable";
 import image1 from "../../assets/images/best-gift.jpg";
@@ -8,6 +9,7 @@ import image3 from "../../assets/images/coffee-cup.jpg";
 import classes from "./productTable.module.css";
 
 const ProductTable = () => {
+  const { firstName } = useSelector((state) => state.admin);
   const history = useHistory();
 
   const handleEdit = () => {
@@ -175,8 +177,7 @@ const ProductTable = () => {
   return (
     <MenuWrapper>
       <div className={classes.section}>
-        <h2>Welcome John</h2>
-        <h4>What du you like to do?</h4>
+        <h2>Բարի Գալուստ {firstName}</h2>
         <ContentTable
           columns={columns}
           data={data}

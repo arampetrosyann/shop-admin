@@ -83,12 +83,12 @@ const ContentTable = (props) => {
         <SearchInput
           value={globalFilter}
           onChange={setGlobalFilter}
-          placeholder="Search..."
+          placeholder="Փնտրել..."
         />
       </div>
       <div className={classes.contentBox}>
         <div className={classes.contentBoxTitle}>
-          <h3>Content Box</h3>
+          <h3>հաճախորդների ցուցակ</h3>
         </div>
         <div className={classes.contentBoxContent}>
           <table {...getTableProps()}>
@@ -132,15 +132,15 @@ const ContentTable = (props) => {
               }
               onClick={() => previousPage()}
             >
-              {"previous"}
+              նախորդ
             </button>
             <button
               className={canNextPage ? classes.nextPage : classes.disabled}
               onClick={() => nextPage()}
             >
-              {"next"}
+              հաջորդ
             </button>
-            <span>Pages {pageOptions.length}</span>
+            <span>Էջ {pageOptions.length}</span>
           </div>
         </div>
       </div>
