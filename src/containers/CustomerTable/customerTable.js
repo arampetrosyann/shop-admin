@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import ContentTable from "../../components/ContentTable";
