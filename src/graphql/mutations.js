@@ -33,3 +33,9 @@ export const ADD_CUSTOMER = gql`
     )
   }
 `;
+
+export const UPDATE_CUSTOMER = gql`
+  mutation($id: ID!, $customerData: CustomerDataInput) {
+    adminUpdateCustomer(id: $id, customerData: $customerData)
+  }
+`;

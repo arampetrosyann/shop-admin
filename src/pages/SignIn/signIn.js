@@ -13,11 +13,7 @@ const SignIn = (props) => {
     <div className={classes.root}>
       <div className={classes.formContainer}>
         <div className={classes.iconContainer}>
-          <img
-            src="https://www.freeiconspng.com/uploads/user-login-icon-14.png"
-            width="80px"
-            alt="Login icon"
-          />
+          <span className={classes.iconSignIn} />
         </div>
         <Form
           action="/"
