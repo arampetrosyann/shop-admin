@@ -38,7 +38,6 @@ const useUpdateUser = () => {
           customerData: { email, password, firstname, lastname },
         },
       });
-
       history.replace("/");
     },
   });

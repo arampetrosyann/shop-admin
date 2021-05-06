@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useLazyQuery, useMutation } from "@apollo/client";
+import { Link } from "react-router-dom";
 import ContentTable from "../../components/ContentTable";
 import MenuWrapper from "../../components/MenuWrapper";
 import { GET_CUSTOMERS } from "../../graphql/queries";
@@ -16,18 +17,12 @@ const CustomerTable = () => {
     DELETE_CUSTOMER
   );
 
-  console.log(data, 33);
-
   useEffect(() => {
     getCustomers();
     if (customersData) {
       setData(customersData.customers);
     }
   }, [customersData]);
-
-  const handleCustomerEdit = () => {
-    // history.push("/");
-  };
 
   const handleCustomerRemove = (id) => {
     removeCustomers({
@@ -62,10 +57,12 @@ const CustomerTable = () => {
         Cell: (row) => {
           return (
             <div>
-              <span
-                className={classes.edit}
-                onClick={handleCustomerEdit}
-              ></span>
+              <Link
+                to={`/customer/${row.row.original.id}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <span className={classes.edit}></span>
+              </Link>
               <span
                 className={classes.remove}
                 onClick={() => handleCustomerRemove(row.row.original.id)}
