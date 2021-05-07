@@ -9,11 +9,11 @@ const AdminMenu = (props) => {
 
   const history = useHistory();
 
-  const changePage = ["products", "customers"];
+  const changePage = ["products", ""];
 
   const handleMenuItem = (n) => {
     setMenuItemActive((prev) => (prev === n ? null : n));
-    history.push(`./${changePage[n]}`);
+    history.replace(`./${changePage[n]}`);
   };
 
   const handleSubMenuItem = (n) => {
@@ -34,7 +34,7 @@ const AdminMenu = (props) => {
                     : classes.adminMenuButton,
               }}
             >
-              Products
+              Ապրանքներ
             </Button>
           </Link>
           {props.activeClass === 0 && (
@@ -74,7 +74,7 @@ const AdminMenu = (props) => {
                     : classes.adminMenuButton,
               }}
             >
-              Customers
+              հաճախորդներ
             </Button>
           </Link>
           {props.activeClass === 1 && (

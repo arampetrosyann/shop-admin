@@ -21,12 +21,9 @@ const ContentTable = (props) => {
     canPreviousPage,
     canNextPage,
     pageOptions,
-    pageCount,
-    gotoPage,
     nextPage,
     previousPage,
     page,
-    setPageSize,
     state,
     setGlobalFilter,
     selectedFlatRows,
@@ -75,7 +72,7 @@ const ContentTable = (props) => {
           </Link>
           <button
             className={
-              selectedFlatRows.length === rows.length
+              selectedFlatRows.length > 0
                 ? classes.removeButton
                 : classes.disabledRemoveButton
             }
@@ -86,7 +83,7 @@ const ContentTable = (props) => {
         <SearchInput
           value={globalFilter}
           onChange={setGlobalFilter}
-          placeholder="Search..."
+          placeholder="Փնտրել..."
         />
       </div>
       <div className={classes.contentBox}>
@@ -96,10 +93,11 @@ const ContentTable = (props) => {
         <div className={classes.contentBoxContent}>
           <table {...getTableProps()}>
             <thead>
-              {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column) => (
+              {headerGroups.map((headerGroup, ind) => (
+                <tr key={ind} {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column, ind) => (
                     <th
+                      key={ind}
                       {...column.getHeaderProps(
                         column.getSortByToggleProps()
                       )}
@@ -111,13 +109,13 @@ const ContentTable = (props) => {
               ))}
             </thead>
             <tbody {...getTableBodyProps()}>
-              {page.slice(0, 10).map((row, i) => {
+              {page.slice(0, 10).map((row) => {
                 prepareRow(row);
                 return (
-                  <tr {...row.getRowProps()}>
+                  <tr key={row.id} {...row.getRowProps()}>
                     {row.cells.map((cell) => {
                       return (
-                        <td {...cell.getCellProps()}>
+                        <td key={cell.row.id} {...cell.getCellProps()}>
                           {cell.render("Cell")}
                         </td>
                       );
@@ -134,15 +132,15 @@ const ContentTable = (props) => {
               }
               onClick={() => previousPage()}
             >
-              {"previous"}
+              նախորդ
             </button>
             <button
               className={canNextPage ? classes.nextPage : classes.disabled}
               onClick={() => nextPage()}
             >
-              {"next"}
+              հաջորդ
             </button>
-            <span>Pages {pageOptions.length}</span>
+            <span>Էջ {pageOptions.length}</span>
           </div>
         </div>
       </div>

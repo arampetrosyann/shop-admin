@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useLazyQuery, useMutation } from "@apollo/client";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ContentTable from "../../components/ContentTable";
 import MenuWrapper from "../../components/MenuWrapper";
@@ -8,6 +9,7 @@ import { DELETE_CUSTOMER } from "../../graphql/mutations";
 import classes from "./customerTable.module.css";
 
 const CustomerTable = () => {
+  const { firstName } = useSelector((state) => state.admin);
   const [getCustomers, { data: customersData }] = useLazyQuery(
     GET_CUSTOMERS,
     {
@@ -38,15 +40,15 @@ const CustomerTable = () => {
         accessor: "checkbox",
       },
       {
-        Header: "Firstname",
+        Header: "Անուն",
         accessor: "firstname",
       },
       {
-        Header: "Lastname",
+        Header: "Ազգանուն",
         accessor: "lastname",
       },
       {
-        Header: "Email",
+        Header: "Էլ. հասցե",
         accessor: "email",
       },
       {
@@ -76,8 +78,7 @@ const CustomerTable = () => {
   return (
     <MenuWrapper activeClass={1}>
       <div className={classes.section}>
-        <h2>Welcome John</h2>
-        <h4>What du you like to do?</h4>
+        <h2>Բարի Գալուստ {firstName}</h2>
         <ContentTable
           page="Հաճախորդների"
           columns={columns}
