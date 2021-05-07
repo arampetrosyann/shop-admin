@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   useGlobalFilter,
   useSortBy,
@@ -91,7 +91,7 @@ const ContentTable = (props) => {
       </div>
       <div className={classes.contentBox}>
         <div className={classes.contentBoxTitle}>
-          <h3>Content Box</h3>
+          <h3>{props.page} ցուցակ</h3>
         </div>
         <div className={classes.contentBoxContent}>
           <table {...getTableProps()}>

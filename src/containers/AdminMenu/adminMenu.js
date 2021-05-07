@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Button from "../../components/Button";
 import classes from "./adminMenu.module.css";
 
-const AdminMenu = () => {
+const AdminMenu = (props) => {
   const [menuItemActive, setMenuItemActive] = useState(null);
   const [subMenuItemActive, setSubMenuItemActive] = useState("");
 
@@ -25,18 +25,19 @@ const AdminMenu = () => {
       <h2 className={classes.title}>Bigbox Admin</h2>
       <div className={classes.menuBar}>
         <div>
-          <Button
-            classes={{
-              root:
-                menuItemActive === 0
-                  ? classes.adminMenuButtonActive
-                  : classes.adminMenuButton,
-            }}
-            onClick={() => handleMenuItem(0)}
-          >
-            Products
-          </Button>
-          {menuItemActive === 0 && (
+          <Link to="/products">
+            <Button
+              classes={{
+                root:
+                  props.activeClass === 0
+                    ? classes.adminMenuButtonActive
+                    : classes.adminMenuButton,
+              }}
+            >
+              Products
+            </Button>
+          </Link>
+          {props.activeClass === 0 && (
             <div className={classes.submenu}>
               <ul>
                 <li
@@ -64,18 +65,19 @@ const AdminMenu = () => {
           )}
         </div>
         <div>
-          <Button
-            classes={{
-              root:
-                menuItemActive === 1
-                  ? classes.adminMenuButtonActive
-                  : classes.adminMenuButton,
-            }}
-            onClick={() => handleMenuItem(1)}
-          >
-            Customers
-          </Button>
-          {menuItemActive === 1 && (
+          <Link to="/">
+            <Button
+              classes={{
+                root:
+                  props.activeClass === 1
+                    ? classes.adminMenuButtonActive
+                    : classes.adminMenuButton,
+              }}
+            >
+              Customers
+            </Button>
+          </Link>
+          {props.activeClass === 1 && (
             <div className={classes.submenu}>
               <ul>
                 <li

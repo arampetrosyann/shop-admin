@@ -173,11 +173,12 @@ const ProductTable = () => {
     []
   );
   return (
-    <MenuWrapper>
+    <MenuWrapper activeClass={0}>
       <div className={classes.section}>
         <h2>Welcome John</h2>
         <h4>What du you like to do?</h4>
         <ContentTable
+          page="Ապրանքների"
           columns={columns}
           data={data}
           addProduct="/add-product"
