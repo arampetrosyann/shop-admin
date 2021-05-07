@@ -72,7 +72,7 @@ const ContentTable = (props) => {
           </Link>
           <button
             className={
-              selectedFlatRows.length === rows.length
+              selectedFlatRows.length > 0
                 ? classes.removeButton
                 : classes.disabledRemoveButton
             }
