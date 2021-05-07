@@ -76,10 +76,11 @@ const CustomerTable = () => {
   );
 
   return (
-    <MenuWrapper>
+    <MenuWrapper activeClass={1}>
       <div className={classes.section}>
         <h2>Բարի Գալուստ {firstName}</h2>
         <ContentTable
+          page="Հաճախորդների"
           columns={columns}
           data={customersData ? customersData.customers : []}
           addProduct="/add-customer"
