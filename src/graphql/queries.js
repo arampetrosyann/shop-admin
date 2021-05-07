@@ -9,9 +9,9 @@ export const GET_ADMIN = gql`
   }
 `;
 
-export const GET_USERS = gql`
-  query {
-    users {
+export const GET_USER = gql`
+  query($id: ID!) {
+    adminCustomer(id: $id) {
       firstname
       lastname
       email
@@ -19,12 +19,14 @@ export const GET_USERS = gql`
   }
 `;
 
-export const GET_USER = gql`
-  query($id: ID!) {
-    adminCustomer(id: $id) {
+export const GET_CUSTOMERS = gql`
+  query Customer {
+    customers {
+      id
       firstname
       lastname
       email
+      token
     }
   }
 `;
@@ -43,18 +45,6 @@ export const GET_PRODUCTS_DATA = gql`
           path
         }
       }
-    }
-  }
-`;
-
-export const GET_CUSTOMERS = gql`
-  query Customer {
-    customers {
-      id
-      firstname
-      lastname
-      email
-      token
     }
   }
 `;
