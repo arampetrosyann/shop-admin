@@ -31,21 +31,15 @@
   font-size: 18px;
   color: rgb(92, 1, 1);
 }
-.add {
-  font-family: "icomoon";
-  font-size: 14px;
-  transform: rotate(45deg);
-  display: inline-block;
-  transition: 0.3s linear;
-}
+.add,
 .removeAll {
   font-family: "icomoon";
   font-size: 14px;
   display: inline-block;
-  transition: 0.3s linear;
+  transition: 0.1s linear;
 }
 .add::after {
-  content: "\ea0f";
+  content: "\ea0a";
   color: #1f4977;
 }
 .removeAll::after {
@@ -53,15 +47,13 @@
   color: rgb(177, 2, 2);
 }
 .disabledRemoveButton {
-  margin-left: 10px;
-  border: 1px solid #000000;
-  border-radius: 6px;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  composes: removeButton;
+  cursor: unset;
   opacity: 0.6;
+}
+.disabledRemoveButton:hover .removeAll {
+  font-size: 14px;
+  color: rgb(177, 2, 2);
 }
 .contentBox {
   border: 1px solid rgb(197, 197, 197);

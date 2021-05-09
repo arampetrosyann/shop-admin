@@ -175,10 +175,11 @@ const ProductTable = () => {
     []
   );
   return (
-    <MenuWrapper>
+    <MenuWrapper activeClass={0}>
       <div className={classes.section}>
         <h2>Բարի Գալուստ {firstName}</h2>
         <ContentTable
+          page="Ապրանքների"
           columns={columns}
           data={data}
           addProduct="/add-product"
