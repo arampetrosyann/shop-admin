@@ -1,0 +1,16 @@
+.root {
+  padding: 11px 17px;
+  border-radius: 6px;
+}
+
+.heading {
+  font-size: 13px;
+}
+
+.container {
+  margin: 11px 0;
+}
+
+.label {
+  padding-left: 13px;
+}
