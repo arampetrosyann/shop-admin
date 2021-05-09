@@ -5,6 +5,7 @@ import SignIn from "../pages/SignIn";
 import Home from "../pages/Home";
 import ProductTable from "../containers/ProductTable";
 import AddProduct from "../pages/AddProduct";
+import UpdateProduct from "../pages/UpdateProduct";
 import AddUser from "../pages/AddUser";
 import UpdateUser from "../pages/UpdateUser";
 
@@ -23,6 +24,9 @@ const Routes = () => {
           </Route>
           <Route path="/add-product">
             <AddProduct />
+          </Route>
+          <Route path="/product/:id">
+            <UpdateProduct />
           </Route>
           <Route path="/add-customer">
             <AddUser />

@@ -1,0 +1,11 @@
+.root {
+  composes: root from "../../Radio/radio.module.css";
+}
+
+.heading {
+  composes: heading from "../../Radio/radio.module.css";
+}
+
+.container {
+  composes: container from "../../Radio/radio.module.css";
+}

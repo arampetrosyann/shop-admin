@@ -39,3 +39,35 @@ export const UPDATE_CUSTOMER = gql`
     adminUpdateCustomer(id: $id, customerData: $customerData)
   }
 `;
+
+export const CREATE_PRODUCT = gql`
+  mutation(
+    $title: String!
+    $image: String!
+    $brand: String!
+    $description: String!
+    $price: Float!
+    $categories: [ID]!
+  ) {
+    adminCreateProduct(
+      productInput: {
+        title: $title
+        image: $image
+        brand: $brand
+        description: $description
+        price: $price
+        categories: $categories
+      }
+    ) {
+      _id
+      title
+      image
+      brand
+      description
+      price
+      categories {
+        title
+      }
+    }
+  }
+`;
