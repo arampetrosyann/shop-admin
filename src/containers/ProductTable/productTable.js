@@ -1,6 +1,8 @@
 import React, { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useQuery } from "@apollo/client";
+import { PRODUCTS } from "../../graphql/queries";
 import MenuWrapper from "../../components/MenuWrapper";
 import ContentTable from "../../components/ContentTable";
 import image1 from "../../assets/images/best-gift.jpg";
@@ -11,6 +13,10 @@ import classes from "./productTable.module.css";
 const ProductTable = () => {
   const { firstName } = useSelector((state) => state.admin);
   const history = useHistory();
+
+  const { data: productData } = useQuery(PRODUCTS);
+
+  console.log(productData, 88);
 
   const handleEdit = () => {
     history.push("/");

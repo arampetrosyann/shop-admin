@@ -31,20 +31,15 @@ export const GET_CUSTOMERS = gql`
   }
 `;
 
-export const GET_PRODUCTS_DATA = gql`
-  query GetProductsData($categoryId: ID!) {
-    getCategoryProducts(categoryId: $categoryId) {
-      products {
-        id
-        name
-        price
-        discountedPrice
-        averageRating
-        urlKey
-        images {
-          path
-        }
-      }
+export const PRODUCTS = gql`
+  query Products {
+    products {
+      _id
+      title
+      image
+      brand
+      description
+      price
     }
   }
 `;
