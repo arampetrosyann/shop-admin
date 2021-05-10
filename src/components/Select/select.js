@@ -5,7 +5,13 @@ import useSelect from "../../talons/useSelect";
 import Option from "./Option";
 
 const Select = (props) => {
-  const { options = [], id = "", onChange, style } = props;
+  const {
+    label: defaultLabel = "",
+    options = [],
+    id = "",
+    onChange,
+    style,
+  } = props;
 
   const classes = mergeClasses(defaultClasses, props.classes);
 
@@ -14,7 +20,7 @@ const Select = (props) => {
     optionLabel,
     handleOnClick,
     handleOptionClick,
-  } = useSelect(onChange, classes);
+  } = useSelect(defaultLabel, onChange, classes);
 
   return (
     <div className={classes.container} style={style} id={id}>

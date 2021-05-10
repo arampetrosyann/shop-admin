@@ -1,0 +1,8 @@
+.root {
+  padding: 22px 4px;
+  border: 1.5px dashed rgb(187, 185, 185);
+  border-radius: 4px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+}

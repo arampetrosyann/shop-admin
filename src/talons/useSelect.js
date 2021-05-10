@@ -1,19 +1,22 @@
 import { useCallback, useState, useEffect } from "react";
 
-const useSelect = (onChange, classes) => {
+const useSelect = (defaultLabel = "", onChange, classes) => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [optionLabel, setOptionLabel] = useState("Կարմիր");
+  const [optionLabel, setOptionLabel] = useState(defaultLabel);
 
   const handleOnClick = useCallback(() => {
     setShowDropdown(true);
   }, []);
 
-  const handleOptionClick = useCallback(({ value, label }) => {
-    setOptionLabel(label);
-    setShowDropdown(false);
+  const handleOptionClick = useCallback(
+    ({ value, label }) => {
+      setOptionLabel(label);
+      setShowDropdown(false);
 
-    onChange(value);
-  }, []);
+      onChange(value);
+    },
+    [onChange]
+  );
 
   useEffect(() => {
     document.addEventListener("mousedown", (e) => {

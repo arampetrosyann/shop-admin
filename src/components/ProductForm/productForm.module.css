@@ -1,0 +1,3 @@
+.root {
+  composes: root from "../Form/form.module.css";
+}
