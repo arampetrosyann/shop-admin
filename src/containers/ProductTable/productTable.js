@@ -188,7 +188,7 @@ const ProductTable = () => {
           page="Ապրանքների"
           columns={columns}
           data={data}
-          addProduct="/add-product"
+          add="/add-product"
         />
       </div>
     </MenuWrapper>

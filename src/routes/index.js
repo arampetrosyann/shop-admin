@@ -10,6 +10,7 @@ import AddUser from "../pages/AddUser";
 import UpdateUser from "../pages/UpdateUser";
 import AddCategory from "../pages/AddCategory";
 import UpadeCategory from "../pages/UpadeCategory";
+import ReviewsTable from "../containers/ReviewsTable";
 
 const Routes = () => {
   const { signedIn } = useSelector((state) => state.admin);
@@ -41,6 +42,9 @@ const Routes = () => {
           </Route>
           <Route path="/customer/:id">
             <UpdateUser />
+          </Route>
+          <Route path="/reviews">
+            <ReviewsTable />
           </Route>
         </>
       ) : (

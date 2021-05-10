@@ -83,7 +83,7 @@ const CustomerTable = () => {
           page="Հաճախորդների"
           columns={columns}
           data={customersData ? customersData.customers : []}
-          addProduct="/add-customer"
+          add="/add-customer"
         />
       </div>
     </MenuWrapper>

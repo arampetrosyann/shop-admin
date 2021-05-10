@@ -63,7 +63,7 @@ const ContentTable = (props) => {
       <div className={classes.quickActions}>
         <div className={classes.quickActionsButtons}>
           <Link
-            to={props.addProduct}
+            to={props.add}
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <button className={classes.addButton}>
