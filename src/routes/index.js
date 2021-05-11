@@ -9,8 +9,6 @@ import UpdateProduct from "../pages/UpdateProduct";
 import AddUser from "../pages/AddUser";
 import UpdateUser from "../pages/UpdateUser";
 import Category from "../pages/Category";
-import AddCategory from "../pages/AddCategory";
-import UpadeCategory from "../pages/UpadeCategory";
 
 const Routes = () => {
   const { signedIn } = useSelector((state) => state.admin);
@@ -33,12 +31,6 @@ const Routes = () => {
           </Route>
           <Route path="/categories">
             <Category />
-          </Route>
-          <Route path="/add-category">
-            <AddCategory />
-          </Route>
-          <Route path="/category/:id">
-            <UpadeCategory />
           </Route>
           <Route path="/add-customer">
             <AddUser />

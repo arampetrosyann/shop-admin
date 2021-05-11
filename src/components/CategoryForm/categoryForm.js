@@ -5,11 +5,15 @@ import useCategoryForm from "../../talons/useCategoryForm";
 import Form from "../Form";
 
 const CategoryForm = (props) => {
-  const { type = "add" } = props;
+  const { type = "add", defaultValues = {}, meta = {} } = props;
 
   const classes = mergeClasses(defaultClasses, props.classes);
 
-  const { fields, formik } = useCategoryForm({ type });
+  const { fields, formik } = useCategoryForm({
+    type,
+    defaultValues,
+    meta,
+  });
 
   return (
     <Form

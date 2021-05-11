@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-// import { useHistory, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -8,17 +7,15 @@ const validationSchema = Yup.object().shape({
   parent: Yup.string(),
 });
 
-const useCategoryForm = ({ type }) => {
-  // const { id } = useParams();
-  // const history = useHistory();
-
+const useCategoryForm = ({ type, defaultValues = {}, meta = {} }) => {
   const formik = useFormik({
     initialValues: {
-      title: "",
+      title: defaultValues.title || "",
       parent: "",
     },
     validationSchema,
     onSubmit: (values) => {},
+    enableReinitialize: true,
   });
 
   const fields = useMemo(() => {

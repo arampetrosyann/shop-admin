@@ -1,11 +1,18 @@
-import { useMemo, useCallback } from "react";
-import { useHistory } from "react-router-dom";
+import { useState, useMemo, useCallback } from "react";
 
 const useCategory = () => {
-  const history = useHistory();
+  const [formType, setFormType] = useState("add");
+  const [defaultValues, setDefaultValues] = useState({});
 
-  const onNodeClick = useCallback(({ id }) => {
-    history.push(`/category/${id}`);
+  const handleNodeClick = useCallback((node) => {
+    const { name } = node;
+
+    setFormType("update");
+    setDefaultValues({ title: name });
+  }, []);
+
+  const handleBtnClick = useCallback(() => {
+    setFormType("add");
   }, []);
 
   const data = useMemo(() => {
@@ -73,7 +80,13 @@ const useCategory = () => {
     };
   }, []);
 
-  return { data, onNodeClick };
+  return {
+    data,
+    formType,
+    handleNodeClick,
+    handleBtnClick,
+    defaultValues,
+  };
 };
 
 export default useCategory;
