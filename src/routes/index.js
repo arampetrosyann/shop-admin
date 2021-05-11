@@ -8,6 +8,7 @@ import AddProduct from "../pages/AddProduct";
 import UpdateProduct from "../pages/UpdateProduct";
 import AddUser from "../pages/AddUser";
 import UpdateUser from "../pages/UpdateUser";
+import Category from "../pages/Category";
 import AddCategory from "../pages/AddCategory";
 import UpadeCategory from "../pages/UpadeCategory";
 
@@ -29,6 +30,9 @@ const Routes = () => {
           </Route>
           <Route path="/product/:id">
             <UpdateProduct />
+          </Route>
+          <Route path="/categories">
+            <Category />
           </Route>
           <Route path="/add-category">
             <AddCategory />

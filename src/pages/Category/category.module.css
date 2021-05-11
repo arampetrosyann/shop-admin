@@ -1,0 +1,60 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.button {
+  composes: addButton from "../../components/ContentTable/contentTable.module.css";
+}
+
+.add {
+  composes: add from "../../components/ContentTable/contentTable.module.css";
+}
+
+.container {
+  flex: 1;
+  margin-top: 40px;
+  border: 2px solid #0000007c;
+  border-radius: 8px;
+  background-color: #ece9e9;
+  overflow: hidden;
+}
+
+.rootNode > circle {
+  fill: #06461e;
+  stroke: none;
+}
+
+.rootNode > g > text {
+  fill: #000000;
+  stroke: none;
+}
+
+.nodeWithChildren > circle {
+  fill: #0c7c37;
+  stroke: none;
+}
+
+.nodeWithChildren > g > text {
+  fill: #000000;
+  stroke: none;
+}
+
+.nodeWithoutChildren > circle {
+  fill: #ece9e9;
+  stroke: #0c7c37;
+}
+
+.nodeWithoutChildren > g > text {
+  fill: #000000;
+  stroke: none;
+}
