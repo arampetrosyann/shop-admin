@@ -5,7 +5,10 @@ import ContentTable from "../../components/ContentTable";
 import classes from "./reviewsTable.module.css";
 
 const ReviewsTable = () => {
-  const { data, columns } = useReviewsTable();
+  const { data, columns } = useReviewsTable({
+    edit: classes.edit,
+    remove: classes.remove,
+  });
   return (
     <MenuWrapper activeClass={2}>
       <div className={classes.section}>

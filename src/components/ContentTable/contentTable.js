@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import {
   useGlobalFilter,
   useSortBy,
@@ -58,27 +58,36 @@ const ContentTable = (props) => {
 
   const { globalFilter } = state;
 
+  const customersIds = selectedFlatRows.map(({ original: { id } }) => {
+    return id;
+  });
+
+  useEffect(() => {
+    props.handleCustomersMassIds(customersIds);
+  }, [customersIds]);
+
   return (
     <div className={classes.section}>
       <div className={classes.quickActions}>
         <div className={classes.quickActionsButtons}>
-          <Link
+          {/* <Link
             to={props.add}
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <button className={classes.addButton}>
               <span className={classes.add}></span>
             </button>
-          </Link>
-          <button
+          </Link> */}
+          {/* <button
             className={
               selectedFlatRows.length > 0
                 ? classes.removeButton
                 : classes.disabledRemoveButton
             }
+            onClick={handleCustomersMassRemove}
           >
             <span className={classes.removeAll}></span>
-          </button>
+          </button> */}
         </div>
         <SearchInput
           value={globalFilter}

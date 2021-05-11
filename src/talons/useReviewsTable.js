@@ -1,18 +1,6 @@
 import React, { useMemo } from "react";
 
 const useReviewsTable = (props) => {
-  const style = {
-    edit: {
-      fontFamily: "icomoon",
-      marginRight: "15px",
-      fontSize: "14px",
-      cursor: "pointer",
-      ":hover": {
-        content: "e905",
-        color: "rgb(165, 165, 1)",
-      },
-    },
-  };
   const data = useMemo(
     () => [
       {
@@ -89,8 +77,8 @@ const useReviewsTable = (props) => {
               fontWeight: 600,
             }}
           >
-            <span style={style.edit}></span>
-            {/* <span className={remove}></span> */}
+            <span className={props.edit}></span>
+            <span className={props.remove}></span>
           </div>
         ),
       },

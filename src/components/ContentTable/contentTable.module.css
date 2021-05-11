@@ -9,7 +9,6 @@
 .quickActionsButtons {
   display: flex;
 }
-.addButton,
 .removeButton {
   border: 1px solid #1d1c1c;
   border-radius: 6px;
@@ -23,24 +22,15 @@
 .removeButton {
   margin-left: 10px;
 }
-.addButton:hover .add {
-  font-size: 18px;
-  color: #031c38;
-}
 .removeButton:hover .removeAll {
   font-size: 18px;
   color: rgb(92, 1, 1);
 }
-.add,
 .removeAll {
   font-family: "icomoon";
   font-size: 14px;
   display: inline-block;
   transition: 0.1s linear;
-}
-.add::after {
-  content: "\ea0a";
-  color: #1f4977;
 }
 .removeAll::after {
   content: "\ea0f";
