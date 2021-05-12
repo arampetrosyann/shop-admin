@@ -8,9 +8,8 @@ import AddProduct from "../pages/AddProduct";
 import UpdateProduct from "../pages/UpdateProduct";
 import AddUser from "../pages/AddUser";
 import UpdateUser from "../pages/UpdateUser";
-import AddCategory from "../pages/AddCategory";
-import UpadeCategory from "../pages/UpadeCategory";
 import ReviewsTable from "../containers/ReviewsTable";
+import Category from "../pages/Category";
 
 const Routes = () => {
   const { signedIn } = useSelector((state) => state.admin);
@@ -31,11 +30,8 @@ const Routes = () => {
           <Route path="/product/:id">
             <UpdateProduct />
           </Route>
-          <Route path="/add-category">
-            <AddCategory />
-          </Route>
-          <Route path="/category/:id">
-            <UpadeCategory />
+          <Route path="/categories">
+            <Category />
           </Route>
           <Route path="/add-customer">
             <AddUser />

@@ -1,0 +1,10 @@
+.name {
+  display: inline-block;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.list {
+  padding-left: 16px;
+  list-style: none;
+}

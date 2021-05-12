@@ -125,17 +125,18 @@ const AdminMenu = (props) => {
           )}
         </div>
         <div>
-          <Button
-            classes={{
-              root:
-                menuItemActive === 2
-                  ? classes.adminMenuButtonActive
-                  : classes.adminMenuButton,
-            }}
-            onClick={() => handleMenuItem(2)}
-          >
-            Dashboard
-          </Button>
+          <Link to="/categories">
+            <Button
+              classes={{
+                root:
+                  menuItemActive === 2
+                    ? classes.adminMenuButtonActive
+                    : classes.adminMenuButton,
+              }}
+            >
+              Կատեգորիաներ
+            </Button>
+          </Link>
           {menuItemActive === 2 && (
             <div className={classes.submenu}>
               <ul>
