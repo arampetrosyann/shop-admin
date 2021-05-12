@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   useGlobalFilter,
   useSortBy,
@@ -6,17 +6,14 @@ import {
   useRowSelect,
   usePagination,
 } from "react-table";
-import { Link } from "react-router-dom";
 import Checkbox from "../../components/Checkbox";
 import classes from "./contentTable.module.css";
-import SearchInput from "../SearchInput";
 
 const ContentTable = (props) => {
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
     prepareRow,
     canPreviousPage,
     canNextPage,
@@ -24,8 +21,6 @@ const ContentTable = (props) => {
     nextPage,
     previousPage,
     page,
-    state,
-    setGlobalFilter,
     selectedFlatRows,
   } = useTable(
     {
@@ -56,36 +51,16 @@ const ContentTable = (props) => {
     }
   );
 
-  const { globalFilter } = state;
+  const dataIds = selectedFlatRows.map(({ original: { id } }) => {
+    return id;
+  });
+
+  useEffect(() => {
+    props.handleMassIds(dataIds);
+  }, [dataIds]);
 
   return (
     <div className={classes.section}>
-      <div className={classes.quickActions}>
-        <div className={classes.quickActionsButtons}>
-          <Link
-            to={props.addProduct}
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            <button className={classes.addButton}>
-              <span className={classes.add}></span>
-            </button>
-          </Link>
-          <button
-            className={
-              selectedFlatRows.length > 0
-                ? classes.removeButton
-                : classes.disabledRemoveButton
-            }
-          >
-            <span className={classes.removeAll}></span>
-          </button>
-        </div>
-        <SearchInput
-          value={globalFilter}
-          onChange={setGlobalFilter}
-          placeholder="Փնտրել..."
-        />
-      </div>
       <div className={classes.contentBox}>
         <div className={classes.contentBoxTitle}>
           <h3>{props.page} ցուցակ</h3>

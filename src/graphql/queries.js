@@ -9,40 +9,12 @@ export const GET_ADMIN = gql`
   }
 `;
 
-export const GET_USERS = gql`
-  query {
-    users {
-      firstname
-      lastname
-      email
-    }
-  }
-`;
-
 export const GET_USER = gql`
   query($id: ID!) {
     adminCustomer(id: $id) {
       firstname
       lastname
       email
-    }
-  }
-`;
-
-export const GET_PRODUCTS_DATA = gql`
-  query GetProductsData($categoryId: ID!) {
-    getCategoryProducts(categoryId: $categoryId) {
-      products {
-        id
-        name
-        price
-        discountedPrice
-        averageRating
-        urlKey
-        images {
-          path
-        }
-      }
     }
   }
 `;
@@ -55,6 +27,19 @@ export const GET_CUSTOMERS = gql`
       lastname
       email
       token
+    }
+  }
+`;
+
+export const PRODUCTS = gql`
+  query Products {
+    products {
+      _id
+      title
+      image
+      brand
+      description
+      price
     }
   }
 `;

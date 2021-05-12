@@ -74,7 +74,7 @@ const AdminMenu = (props) => {
                     : classes.adminMenuButton,
               }}
             >
-              հաճախորդներ
+              Հաճախորդներ
             </Button>
           </Link>
           {props.activeClass === 1 && (
@@ -185,18 +185,20 @@ const AdminMenu = (props) => {
           )}
         </div>
         <div>
-          <Button
-            classes={{
-              root:
-                menuItemActive === 3
-                  ? classes.adminMenuButtonActive
-                  : classes.adminMenuButton,
-            }}
-            onClick={() => handleMenuItem(3)}
-          >
-            Dashboard
-          </Button>
-          {menuItemActive === 3 && (
+          <Link to="/reviews">
+            <Button
+              classes={{
+                root:
+                  props.activeClass === 2
+                    ? classes.adminMenuButtonActive
+                    : classes.adminMenuButton,
+              }}
+              onClick={() => handleMenuItem(2)}
+            >
+              Կարծիքներ
+            </Button>
+          </Link>
+          {props.activeClass === 2 && (
             <div className={classes.submenu}>
               <ul>
                 <li
