@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
-import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
 import { PRODUCTS } from "../../graphql/queries";
 import MenuWrapper from "../../components/MenuWrapper";
 import AddLink from "../../components/AddLink";
@@ -17,13 +17,8 @@ const ProductTable = () => {
   const [idsArrayState, setIdsArrayState] = useState([]);
   const [searchInputValue, setSearchInputValue] = useState("");
   const { firstName } = useSelector((state) => state.admin);
-  const history = useHistory();
 
   const { data: productData } = useQuery(PRODUCTS);
-
-  const handleEdit = () => {
-    history.push("/");
-  };
 
   const handleProductsMassIds = (productIds) => {
     if (idsArrayState.length !== productIds.length) {
@@ -190,17 +185,22 @@ const ProductTable = () => {
       {
         Header: "Column 6",
         accessor: "column6",
-        Cell: (row) => (
-          <div
-            style={{
-              color: row.row.values.column2 ? "blue" : "red",
-              fontWeight: 600,
-            }}
-          >
-            <span className={classes.edit} onClick={handleEdit}></span>
-            <span className={classes.remove}></span>
-          </div>
-        ),
+        Cell: (row) => {
+          return (
+            <div>
+              <Link
+                to={`/product/${row.row.original.id}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <span className={classes.edit}></span>
+              </Link>
+              <span
+                className={classes.remove}
+                onClick={() => handleProductRemove(row.row.original.id)}
+              ></span>
+            </div>
+          );
+        },
       },
     ],
     []

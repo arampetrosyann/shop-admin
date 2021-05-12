@@ -10,6 +10,8 @@ export const SIGN_IN = gql`
   }
 `;
 
+//Customer
+
 export const DELETE_MASS_CUSTOMERS = gql`
   mutation AdminMassDeleteCustomers($customerIds: [String]) {
     adminMassDeleteCustomers(customerIds: $customerIds)
@@ -46,6 +48,8 @@ export const UPDATE_CUSTOMER = gql`
   }
 `;
 
+//Product
+
 export const CREATE_PRODUCT = gql`
   mutation(
     $title: String!
@@ -59,6 +63,38 @@ export const CREATE_PRODUCT = gql`
       productInput: {
         title: $title
         image: $image
+        brand: $brand
+        description: $description
+        price: $price
+        categories: $categories
+      }
+    ) {
+      _id
+      title
+      image
+      brand
+      description
+      price
+      categories {
+        title
+      }
+    }
+  }
+`;
+
+export const UPDATE_PRODUCT = gql`
+  mutation AdminUpdateProduct(
+    $id: ID!
+    $title: String
+    $brand: String
+    $description: String
+    $price: Float
+    $categories: [ID!]
+  ) {
+    adminUpdateProduct(
+      productInput: {
+        id: $id
+        title: $title
         brand: $brand
         description: $description
         price: $price

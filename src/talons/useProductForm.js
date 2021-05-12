@@ -1,7 +1,9 @@
 import { useMemo } from "react";
-// import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useMutation, useApolloClient } from "@apollo/client";
+import { CREATE_PRODUCT } from "../graphql/mutations";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required(),
@@ -14,7 +16,8 @@ const validationSchema = Yup.object().shape({
 
 const useProductForm = ({ type }) => {
   // const { id } = useParams();
-  // const history = useHistory();
+  const history = useHistory();
+  const [addProduct] = useMutation(CREATE_PRODUCT);
 
   const formik = useFormik({
     initialValues: {
@@ -26,7 +29,20 @@ const useProductForm = ({ type }) => {
       image: null,
     },
     validationSchema,
-    onSubmit: (values) => {},
+    onSubmit: async ({
+      title,
+      price,
+      brand,
+      description,
+      categories,
+      image,
+    }) => {
+      await addProduct({
+        variables: { title, price, brand, description, categories, image },
+      });
+
+      history.push("/products");
+    },
   });
 
   const fields = useMemo(() => {
