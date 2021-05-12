@@ -4,13 +4,12 @@ import classes from "./buttonMassRemove.module.css";
 const ButtonMassRemove = (props) => {
   return (
     <button
-      //   className={
-      //     selectedFlatRows.length > 0
-      //       ? classes.removeButton
-      //       : classes.disabledRemoveButton
-      //   }
-      className={classes.removeButton}
-      onClick={props.handleCustomersMassRemoveButton}
+      className={
+        props.idsArray.length > 0
+          ? classes.removeButton
+          : classes.disabledRemoveButton
+      }
+      onClick={props.handleMassRemoveButton}
     >
       <span className={classes.removeAll}></span>
     </button>

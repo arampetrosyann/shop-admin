@@ -1,11 +1,17 @@
 .section {
-  margin-top: 40px;
-  padding-bottom: 60px;
+  margin: 40px 0;
 }
-.section h4 {
-  margin-top: 10px;
-  color: rgb(71, 71, 71);
-  font-weight: 500;
+.section h2 {
+  margin: 40px 0;
+}
+.quickActionsLinks {
+  display: flex;
+  justify-content: flex-end;
+}
+.quickActionsButtons {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
 }
 .edit,
 .remove {

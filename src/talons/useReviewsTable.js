@@ -1,6 +1,28 @@
-import React, { useMemo } from "react";
+import React, { useState, useMemo } from "react";
 
 const useReviewsTable = (props) => {
+  const [idsArrayState, setIdsArrayState] = useState([]);
+  const [searchInputValue, setSearchInputValue] = useState("");
+
+  const handleCustomersMassIds = (reviewIds) => {
+    if (idsArrayState.length !== reviewIds.length) {
+      setIdsArrayState(reviewIds);
+    }
+  };
+
+  const handleCustomersMassRemoveButton = async () => {
+    await removeMassCustomers({
+      variables: {
+        customerIds: idsArrayState,
+      },
+    });
+    getCustomers();
+  };
+
+  const handleSearchInput = (e) => {
+    setSearchInputValue(e.target.value);
+  };
+
   const data = useMemo(
     () => [
       {
@@ -86,7 +108,15 @@ const useReviewsTable = (props) => {
     []
   );
 
-  return { data, columns };
+  return {
+    data,
+    columns,
+    idsArrayState,
+    searchInputValue,
+    handleCustomersMassIds,
+    handleCustomersMassRemoveButton,
+    handleSearchInput,
+  };
 };
 
 export default useReviewsTable;
