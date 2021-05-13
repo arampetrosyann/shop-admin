@@ -10,6 +10,12 @@ export const SIGN_IN = gql`
   }
 `;
 
+export const DELETE_MASS_CUSTOMERS = gql`
+  mutation AdminMassDeleteCustomers($customerIds: [String]) {
+    adminMassDeleteCustomers(customerIds: $customerIds)
+  }
+`;
+
 export const DELETE_CUSTOMER = gql`
   mutation DeleteCustomer($id: ID!) {
     adminDeleteCustomer(id: $id)

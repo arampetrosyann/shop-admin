@@ -1,65 +1,7 @@
-.section {
-  margin-top: 40px;
-  padding-bottom: 60px;
-}
-.quickActions {
-  display: flex;
-  justify-content: space-between;
-}
-.quickActionsButtons {
-  display: flex;
-}
-.addButton,
-.removeButton {
-  border: 1px solid #1d1c1c;
-  border-radius: 6px;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.removeButton {
-  margin-left: 10px;
-}
-.addButton:hover .add {
-  font-size: 18px;
-  color: #031c38;
-}
-.removeButton:hover .removeAll {
-  font-size: 18px;
-  color: rgb(92, 1, 1);
-}
-.add,
-.removeAll {
-  font-family: "icomoon";
-  font-size: 14px;
-  display: inline-block;
-  transition: 0.1s linear;
-}
-.add::after {
-  content: "\ea0a";
-  color: #1f4977;
-}
-.removeAll::after {
-  content: "\ea0f";
-  color: rgb(177, 2, 2);
-}
-.disabledRemoveButton {
-  composes: removeButton;
-  cursor: unset;
-  opacity: 0.6;
-}
-.disabledRemoveButton:hover .removeAll {
-  font-size: 14px;
-  color: rgb(177, 2, 2);
-}
 .contentBox {
   border: 1px solid rgb(197, 197, 197);
   box-shadow: 0px 2px 10px #a5a5a5;
   border-radius: 6px;
-  margin-top: 20px;
   width: 100%;
   overflow: hidden;
 }
