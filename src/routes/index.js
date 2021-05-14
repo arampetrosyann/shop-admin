@@ -3,12 +3,15 @@ import { Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import SignIn from "../pages/SignIn";
 import Home from "../pages/Home";
-import ProductTable from "../containers/ProductTable";
+import ProductsTable from "../containers/ProductsTable";
 import AddProduct from "../pages/AddProduct";
 import UpdateProduct from "../pages/UpdateProduct";
 import AddUser from "../pages/AddUser";
 import UpdateUser from "../pages/UpdateUser";
 import ReviewsTable from "../containers/ReviewsTable";
+import SlidersTable from "../containers/SlidersTable";
+import AddSlider from "../containers/AddSlider";
+import UpdateSlider from "../containers/UpdateSlider";
 import Category from "../pages/Category";
 
 const Routes = () => {
@@ -22,7 +25,7 @@ const Routes = () => {
             <Home />
           </Route>
           <Route path="/products">
-            <ProductTable />
+            <ProductsTable />
           </Route>
           <Route path="/add-product">
             <AddProduct />
@@ -41,6 +44,15 @@ const Routes = () => {
           </Route>
           <Route path="/reviews">
             <ReviewsTable />
+          </Route>
+          <Route path="/sliders">
+            <SlidersTable />
+          </Route>
+          <Route path="/add-slider">
+            <AddSlider />
+          </Route>
+          <Route path="/slider/:id">
+            <UpdateSlider />
           </Route>
         </>
       ) : (

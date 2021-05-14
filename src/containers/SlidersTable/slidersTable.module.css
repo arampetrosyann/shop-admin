@@ -4,18 +4,35 @@
 .section h2 {
   margin: 40px 0;
 }
+.quickActionsLinks {
+  display: flex;
+  justify-content: flex-end;
+}
 .quickActionsButtons {
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
 }
+.edit,
 .remove {
   font-family: "icomoon";
   margin-right: 15px;
   font-size: 14px;
   cursor: pointer;
 }
+.edit::after {
+  content: "\e905";
+  color: rgb(165, 165, 1);
+}
 .remove::after {
   content: "\ea0f";
   color: rgb(177, 2, 2);
+}
+.tableImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+.tableImage > img {
+  width: 100%;
 }

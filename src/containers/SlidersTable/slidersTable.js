@@ -1,26 +1,31 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import useReviewsTable from "../../talons/useReviewsTable";
+import useSlidersTable from "../../talons/useSlidersTable";
 import MenuWrapper from "../../components/MenuWrapper";
 import AddLink from "../../components/AddLink";
 import ButtonMassRemove from "../../components/ButtonMassRemove";
 import SearchInput from "../../components/Input";
 import ContentTable from "../../components/ContentTable";
-import classes from "./reviewsTable.module.css";
+import classes from "./slidersTable.module.css";
 
-const ReviewsTable = () => {
+const SlidersTable = () => {
   const { firstName } = useSelector((state) => state.admin);
-  const state = useReviewsTable({
+  const state = useSlidersTable({
+    tableImage: classes.tableImage,
+    edit: classes.edit,
     remove: classes.remove,
   });
 
   return (
-    <MenuWrapper activeClass={2}>
+    <MenuWrapper activeClass={3}>
       <div className={classes.section}>
         <h2>Բարի Գալուստ {firstName}</h2>
+        <div className={classes.quickActionsLinks}>
+          <AddLink add="/add-slider" />
+        </div>
         <div className={classes.quickActionsButtons}>
           <ButtonMassRemove
-            handleMassRemoveButton={state.handleReviewsMassRemoveButton}
+            handleMassRemoveButton={state.handleSlidersMassRemoveButton}
             idsArray={state.idsArrayState}
           />
           <SearchInput
@@ -31,14 +36,14 @@ const ReviewsTable = () => {
           />
         </div>
         <ContentTable
-          page="Կարծիքների"
+          page="Սլայդերի"
           columns={state.columns}
           data={state.data}
-          handleMassIds={state.handleReviewsMassIds}
+          handleMassIds={state.handleSlidersMassIds}
         />
       </div>
     </MenuWrapper>
   );
 };
 
-export default ReviewsTable;
+export default SlidersTable;

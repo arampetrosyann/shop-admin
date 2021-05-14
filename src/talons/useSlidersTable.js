@@ -1,16 +1,19 @@
 import React, { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
+import image1 from "../assets/images/best-gift.jpg";
+import image2 from "../assets/images/book-author.jpg";
 
 const useReviewsTable = (props) => {
   const [idsArrayState, setIdsArrayState] = useState([]);
   const [searchInputValue, setSearchInputValue] = useState("");
 
-  const handleReviewsMassIds = (reviewIds) => {
+  const handleSlidersMassIds = (reviewIds) => {
     if (idsArrayState.length !== reviewIds.length) {
       setIdsArrayState(reviewIds);
     }
   };
 
-  const handleReviewsMassRemoveButton = async () => {
+  const handleSlidersMassRemoveButton = async () => {
     await removeMassCustomers({
       variables: {
         customerIds: idsArrayState,
@@ -27,31 +30,15 @@ const useReviewsTable = (props) => {
     () => [
       {
         id: 0,
-        column1: "01.01.2021",
-        column2: "Janet",
-        column3: "Lorem, ipsum dolor.",
-        column4: 4,
+        slidersName: "Home",
+        sliderName: "Lorem, ipsum dolor.",
+        sliderImage: image1,
       },
       {
         id: 1,
-        column1: "01.01.2021",
-        column2: "Janet",
-        column3: "Lorem, ipsum dolor.",
-        column4: 4,
-      },
-      {
-        id: 2,
-        column1: "01.01.2021",
-        column2: "Janet",
-        column3: "Lorem, ipsum dolor.",
-        column4: 4,
-      },
-      {
-        id: 3,
-        column1: "01.01.2021",
-        column2: "Janet",
-        column3: "Lorem, ipsum dolor.",
-        column4: 4,
+        slidersName: "Home",
+        sliderName: "Lorem, ipsum dolor.",
+        sliderImage: image2,
       },
     ],
     []
@@ -64,34 +51,26 @@ const useReviewsTable = (props) => {
         accessor: "checkbox",
       },
       {
-        Header: "Column 1",
-        accessor: "column1",
+        Header: "Sliders Name",
+        accessor: "slidersName",
       },
       {
-        Header: "Column 2",
-        accessor: "column2",
+        Header: "Name",
+        accessor: "sliderName",
       },
       {
-        Header: "Column 3",
-        accessor: "column3",
-      },
-      {
-        Header: "Column 4",
-        accessor: "column4",
+        Header: "Image",
+        accessor: "sliderImage",
         Cell: (row) => (
-          <div
-            style={{
-              color: row.row.values.column2 ? "blue" : "red",
-              fontWeight: 600,
-            }}
-          >
-            ${row.value}
+          <div className={props.tableImage}>
+            <img src={row.value} alt="" />
           </div>
         ),
       },
+
       {
-        Header: "Column 6",
-        accessor: "column6",
+        Header: "",
+        accessor: "editAndRemove",
         Cell: (row) => (
           <div
             style={{
@@ -99,6 +78,12 @@ const useReviewsTable = (props) => {
               fontWeight: 600,
             }}
           >
+            <Link
+              to={`/slider/${row.row.original.id}`}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <span className={props.edit}></span>
+            </Link>
             <span className={props.remove}></span>
           </div>
         ),
@@ -112,8 +97,8 @@ const useReviewsTable = (props) => {
     columns,
     idsArrayState,
     searchInputValue,
-    handleReviewsMassIds,
-    handleReviewsMassRemoveButton,
+    handleSlidersMassIds,
+    handleSlidersMassRemoveButton,
     handleSearchInput,
   };
 };

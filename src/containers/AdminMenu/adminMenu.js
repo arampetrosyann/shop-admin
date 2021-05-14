@@ -245,6 +245,67 @@ const AdminMenu = (props) => {
             </div>
           )}
         </div>
+        <div>
+          <Link to="/sliders">
+            <Button
+              classes={{
+                root:
+                  props.activeClass === 3
+                    ? classes.adminMenuButtonActive
+                    : classes.adminMenuButton,
+              }}
+              onClick={() => handleMenuItem(3)}
+            >
+              Սլայդեր
+            </Button>
+          </Link>
+          {props.activeClass === 3 && (
+            <div className={classes.submenu}>
+              <ul>
+                <li
+                  className={
+                    subMenuItemActive === "article14"
+                      ? classes.active
+                      : null
+                  }
+                  onClick={() => handleSubMenuItem("article14")}
+                >
+                  Manage Articles
+                </li>
+                <li
+                  className={
+                    subMenuItemActive === "article25"
+                      ? classes.active
+                      : null
+                  }
+                  onClick={() => handleSubMenuItem("article25")}
+                >
+                  Manage Articles
+                </li>
+                <li
+                  className={
+                    subMenuItemActive === "article36"
+                      ? classes.active
+                      : null
+                  }
+                  onClick={() => handleSubMenuItem("article36")}
+                >
+                  Manage Articles
+                </li>
+                <li
+                  className={
+                    subMenuItemActive === "article47"
+                      ? classes.active
+                      : null
+                  }
+                  onClick={() => handleSubMenuItem("article47")}
+                >
+                  Manage Articles
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -11,9 +11,9 @@ import ContentTable from "../../components/ContentTable";
 import image1 from "../../assets/images/best-gift.jpg";
 import image2 from "../../assets/images/book-author.jpg";
 import image3 from "../../assets/images/coffee-cup.jpg";
-import classes from "./productTable.module.css";
+import classes from "./productsTable.module.css";
 
-const ProductTable = () => {
+const ProductsTable = () => {
   const [idsArrayState, setIdsArrayState] = useState([]);
   const [searchInputValue, setSearchInputValue] = useState("");
   const { firstName } = useSelector((state) => state.admin);
@@ -235,4 +235,4 @@ const ProductTable = () => {
   );
 };
 
-export default ProductTable;
+export default ProductsTable;
