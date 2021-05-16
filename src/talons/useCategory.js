@@ -1,93 +1,34 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useCallback } from "react";
+import { useQuery } from "@apollo/client";
+import { CATEGORIES } from "../graphql/queries";
 
 const useCategory = () => {
   const [formType, setFormType] = useState("add");
-  const [defaultValues, setDefaultValues] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState({});
+  const { data, refetch } = useQuery(CATEGORIES);
 
-  const handleNodeClick = useCallback((node) => {
-    const { name } = node;
-
-    setFormType("update");
-    setDefaultValues({ title: name });
-  }, []);
+  const handleNodeClick = useCallback(
+    (node) => {
+      setFormType("update");
+      setSelectedCategory(node);
+    },
+    [selectedCategory]
+  );
 
   const handleBtnClick = useCallback(() => {
     setFormType("add");
-  }, []);
-
-  const data = useMemo(() => {
-    return [
-      {
-        id: "6asda6D61236ASDFAS",
-        name: "Նվեր",
-        children: [
-          {
-            id: "6asda6D61236",
-            name: "Գիրք",
-            children: [
-              {
-                id: "6asda6asdasdDDFAS",
-                name: "Գեղարվեստական",
-              },
-              {
-                id: "6asd22226asdasdDDFaAS",
-                name: "Ինֆորմացիոն",
-              },
-              {
-                id: "6asd22226a4444sdDDFaAS",
-                name: "Մոտիվացնող",
-              },
-            ],
-          },
-          {
-            id: "6asd222232323dDDFaAS",
-            name: "Բաժակ",
-            children: [
-              {
-                id: "6as1231dasdAS",
-                name: "Մեծ",
-                children: [
-                  {
-                    id: "6as123111111dasdAS",
-                    name: "Գինու",
-                  },
-                  {
-                    id: "6as123111442221dasdAS",
-                    name: "Թեյի",
-                  },
-                ],
-              },
-              {
-                id: "6as123111123fffffff44aaaasdAS",
-                name: "Փոքր",
-              },
-            ],
-          },
-          {
-            id: "6as12311112666tttarrraaaasdAS",
-            name: "Նվեր քարտ",
-            children: [
-              {
-                id: "6as123111222cccccraaaasdAS",
-                name: "10.000Դ",
-              },
-              {
-                id: "6as12311xxx22111raaaasdAS",
-                name: "20.000Դ",
-              },
-            ],
-          },
-        ],
-      },
-    ];
+    setSelectedCategory({});
   }, []);
 
   return {
-    data,
+    data: data && data.adminGetCategories,
+    refetch,
     formType,
+    setFormType,
     handleNodeClick,
     handleBtnClick,
-    defaultValues,
+    selectedCategory,
+    setSelectedCategory,
   };
 };
 

@@ -77,3 +77,24 @@ export const CREATE_PRODUCT = gql`
     }
   }
 `;
+
+export const ADD_CATEGORY = gql`
+  mutation($categoryData: CategoryInputData!) {
+    adminAddCategory(categoryData: $categoryData)
+  }
+`;
+
+export const DELETE_CATEGORY = gql`
+  mutation($categoryId: ID!) {
+    adminDeleteCategory(categoryId: $categoryId)
+  }
+`;
+
+export const UPDATE_CATEGORY = gql`
+  mutation($categoryId: ID!, $categoryData: CategoryInputData!) {
+    adminUpdateCategory(
+      categoryId: $categoryId
+      categoryData: $categoryData
+    )
+  }
+`;

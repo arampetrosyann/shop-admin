@@ -1,6 +1,6 @@
 import { useCallback, useState, useEffect } from "react";
 
-const useSelect = (defaultLabel = "", onChange, classes) => {
+const useSelect = (defaultLabel = "", onChange = () => {}, classes) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [optionLabel, setOptionLabel] = useState(defaultLabel);
 
@@ -17,6 +17,10 @@ const useSelect = (defaultLabel = "", onChange, classes) => {
     },
     [onChange]
   );
+
+  useEffect(() => {
+    setOptionLabel(defaultLabel);
+  }, [defaultLabel]);
 
   useEffect(() => {
     document.addEventListener("mousedown", (e) => {
@@ -40,7 +44,12 @@ const useSelect = (defaultLabel = "", onChange, classes) => {
     };
   }, [classes]);
 
-  return { showDropdown, optionLabel, handleOnClick, handleOptionClick };
+  return {
+    showDropdown,
+    optionLabel,
+    handleOnClick,
+    handleOptionClick,
+  };
 };
 
 export default useSelect;
