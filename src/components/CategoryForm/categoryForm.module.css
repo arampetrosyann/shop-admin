@@ -1,3 +1,15 @@
 .root {
   composes: root from "../Form/form.module.css";
 }
+
+.submitBtn {
+  composes: submitBtn from "../Form/form.module.css";
+  max-width: unset;
+  width: 100%;
+}
+
+.deleteBtn {
+  composes: submitBtn;
+  margin-top: 13px;
+  background: #aa1616;
+}

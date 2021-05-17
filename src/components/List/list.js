@@ -4,22 +4,23 @@ import mergeClasses from "../../helpers/mergeClasses";
 import Node from "./Node";
 
 const List = (props) => {
-  const { data = {}, onNodeClick, displayNodeLength } = props;
+  const { data = [], onNodeClick, onIconClick, displayNodeLength } = props;
 
   const classes = mergeClasses(defaultClasses, props.classes);
 
   const renderDataArr = useMemo(() => {
-    return [data].map((node, ind) => {
+    return data.map((node, ind) => {
       return (
         <Node
           key={node.id || ind}
           item={node}
           onClick={onNodeClick}
+          onIconClick={onIconClick}
           displayNodeLength={displayNodeLength}
         />
       );
     });
-  }, [data, onNodeClick, displayNodeLength]);
+  }, [data, onNodeClick, onIconClick, displayNodeLength]);
 
   return (
     <div className={classes.root}>

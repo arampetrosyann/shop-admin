@@ -13,11 +13,11 @@
 }
 
 .button {
-  composes: addButton from "../../components/ContentTable/contentTable.module.css";
+  composes: addButton from "../../components/AddLink/addLink.module.css";
 }
 
 .add {
-  composes: add from "../../components/ContentTable/contentTable.module.css";
+  composes: add from "../../components/AddLink/addLink.module.css";
 }
 
 .container {
@@ -43,7 +43,6 @@
   width: 50%;
   flex-direction: column;
   justify-content: space-evenly;
-  overflow-x: hidden;
 }
 
 .heading {

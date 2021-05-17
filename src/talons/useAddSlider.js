@@ -1,31 +1,59 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useFormik } from "formik";
 
 const useAddSlider = () => {
+  const [addSlider, setAddSlider] = useState([]);
   const formik = useFormik({
     initialValues: {
-      parent: "",
+      selectSlider: "",
+      title: "",
+      image: null,
     },
-    onSubmit: (values) => {},
-    enableReinitialize: true,
   });
 
   const fields = useMemo(() => {
     return [
       {
         field: "select",
-        label: "Ծնող",
+        label: "Ընտրել սլայդեր",
         options: [
-          { value: "Բաժակ", label: "Բաժակ" },
-          { value: "Գրիչ", label: "Գրիչ" },
-          { value: "Նվեր քարտ", label: "Նվեր քարտ" },
+          { value: "Գլխավոր էջ", label: "Գլխավոր էջ" },
+          { value: "Ապրանքների էջ", label: "Ապրանքների էջ" },
         ],
-        onChange: (value) => formik.setFieldValue("parent", value),
+        onChange: (value) => formik.setFieldValue("selectSlider", value),
+        style: { width: "200px" },
       },
     ];
   }, [formik]);
 
-  return { fields, formik };
+  const addFields = useMemo(() => {
+    return [
+      {
+        field: "input",
+        type: "text",
+        name: "title",
+        id: "title",
+        value: formik.values.title,
+        placeholder: "Անվանում",
+        onChange: formik.handleChange,
+      },
+      {
+        field: "files",
+        placeholder: "Ավելացնել նկար",
+        accepts: ["image/*"],
+        maxFileSize: 10000000,
+        onChange: (files) => {
+          formik.setFieldValue("image", files[0]);
+        },
+      },
+    ];
+  }, [formik]);
+
+  const handleAddForm = () => {
+    setAddSlider(addFields);
+  };
+
+  return { fields, formik, addSlider, handleAddForm };
 };
 
 export default useAddSlider;

@@ -43,3 +43,15 @@ export const PRODUCTS = gql`
     }
   }
 `;
+
+export const CATEGORIES = gql`
+  query {
+    adminGetCategories {
+      items {
+        id
+        title
+        parent
+      }
+    }
+  }
+`;

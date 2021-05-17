@@ -1,11 +1,30 @@
-.root {
+.section {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  margin: 70px 0;
   height: 100%;
 }
 
 .heading {
   padding: 6px 0;
   text-align: center;
+}
+
+.addSlider {
+  composes: add from "../../components/AddLink/addLink.module.css";
+  cursor: pointer;
+}
+
+.addSlider::after {
+  content: "\ea0a";
+  color: rgb(3, 63, 38);
+}
+
+.disabledRemoveButton {
+  composes: addSlider;
+  cursor: unset;
+  opacity: 0.6;
+}
+.disabledRemoveButton > .addFields {
+  display: none;
 }

@@ -4,33 +4,44 @@ import mergeClasses from "../../../helpers/mergeClasses";
 
 const Node = (props) => {
   const [open, setOpen] = useState(false);
-  const { item, onClick = () => {}, displayNodeLength = true } = props;
+  const {
+    item,
+    onClick = () => {},
+    onIconClick = () => {},
+    displayNodeLength = true,
+  } = props;
 
   const classes = mergeClasses(defaultClasses, props.classes);
 
   const childNode = useMemo(() => {
-    if (item.children) {
+    if (item.children && item.children.length) {
       return item.children.map((node, ind) => {
         return (
           <Node
             key={node.id || ind}
             item={node}
             onClick={onClick}
+            onIconClick={onIconClick}
             displayNodeLength={displayNodeLength}
           />
         );
       });
     }
-  }, [item, onClick, displayNodeLength]);
+  }, [item, onClick, onIconClick, displayNodeLength]);
 
   const handleOnClick = useCallback(() => {
-    setOpen((prevState) => !prevState);
-
     onClick(item);
   }, [onClick]);
 
+  const handleOnIconClick = useCallback(() => {
+    setOpen((prevState) => !prevState);
+
+    onIconClick(item);
+  }, [onIconClick]);
+
   return (
     <li className={classes.root}>
+      <span className={classes.iconPlus} onClick={handleOnIconClick} />
       <span className={classes.name} onClick={handleOnClick}>
         {item.name}
         {displayNodeLength

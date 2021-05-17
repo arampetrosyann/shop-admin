@@ -37,7 +37,6 @@ const Form = (props) => {
           </div>
         );
       })}
-      {children}
       <div className={classes.btnContainer}>
         <Button
           type="submit"
@@ -47,6 +46,7 @@ const Form = (props) => {
           {btnValue}
         </Button>
       </div>
+      {children}
     </form>
   );
 };
