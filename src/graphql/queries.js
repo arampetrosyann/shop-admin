@@ -52,6 +52,7 @@ export const CATEGORIES = gql`
         title
         parent
       }
+      total
     }
   }
 `;

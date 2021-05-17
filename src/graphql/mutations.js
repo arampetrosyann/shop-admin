@@ -47,24 +47,8 @@ export const UPDATE_CUSTOMER = gql`
 `;
 
 export const CREATE_PRODUCT = gql`
-  mutation(
-    $title: String!
-    $image: String!
-    $brand: String!
-    $description: String!
-    $price: Float!
-    $categories: [ID]!
-  ) {
-    adminCreateProduct(
-      productInput: {
-        title: $title
-        image: $image
-        brand: $brand
-        description: $description
-        price: $price
-        categories: $categories
-      }
-    ) {
+  mutation($productInput: ProductInput!) {
+    adminCreateProduct(productInput: $productInput) {
       _id
       title
       image
@@ -74,6 +58,28 @@ export const CREATE_PRODUCT = gql`
       categories {
         title
       }
+    }
+  }
+`;
+
+export const UPDATE_PRODUCT = gql`
+  mutation(
+    $id: ID!
+    $title: String
+    $brand: String
+    $description: String
+    $price: Float
+    $categories: [ID!]
+  ) {
+    adminUpdateProduct(
+      id: $id
+      title: $title
+      brand: $brand
+      description: $description
+      price: $price
+      categories: $categories
+    ) {
+      title
     }
   }
 `;

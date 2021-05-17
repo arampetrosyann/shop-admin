@@ -1,33 +1,70 @@
 import { useMemo } from "react";
-// import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { CREATE_PRODUCT, UPDATE_PRODUCT } from "../graphql/mutations";
 
 const validationSchema = Yup.object().shape({
-  title: Yup.string().required(),
-  price: Yup.number().min(0),
-  brand: Yup.string(),
-  description: Yup.string(),
-  categories: Yup.array().of(Yup.string()),
-  image: Yup.mixed(),
+  title: Yup.string().required("Լրացրեք դաշտը"),
+  brand: Yup.string().required("Լրացրեք դաշտը"),
+  description: Yup.string().required("Լրացրեք դաշտը"),
+  price: Yup.number()
+    .min(0, "Գինը պետք է լինի մեծ 0-ից")
+    .required("Լրացրեք դաշտը"),
+  categories: Yup.array(),
 });
 
 const useProductForm = ({ type }) => {
-  // const { id } = useParams();
-  // const history = useHistory();
+  const { id } = useParams();
+  const history = useHistory();
+  const { items, isDataFetched } = useSelector(
+    (state) => state.categories
+  );
+  const [addProduct] = useMutation(CREATE_PRODUCT);
+  const [updateProduct] = useMutation(UPDATE_PRODUCT);
 
   const formik = useFormik({
     initialValues: {
       title: "",
-      price: "",
+      image: "",
       brand: "",
       description: "",
+      price: 0,
       categories: [],
-      image: null,
     },
     validationSchema,
-    onSubmit: (values) => {},
+    onSubmit: async (values) => {
+      let result = values;
+
+      if (values.image) {
+        result = { ...values, image: JSON.stringify(values.image) };
+      }
+
+      if (type === "add") {
+        await addProduct({
+          variables: { productInput: result },
+        });
+      } else if (type === "update") {
+        await updateProduct({ variables: { id: id, ...values } });
+      }
+
+      history.replace("/products");
+    },
   });
+
+  const checkboxInputs = useMemo(() => {
+    let result = [];
+
+    if (isDataFetched) {
+      result = items.map(({ id, title }) => {
+        return { value: id, label: title };
+      });
+    }
+
+    return result;
+  }, [items]);
 
   const fields = useMemo(() => {
     return [
@@ -37,8 +74,10 @@ const useProductForm = ({ type }) => {
         name: "title",
         id: "title",
         value: formik.values.title,
+        error: formik.touched.title ? formik.errors.title : "",
         placeholder: "Անվանում",
         onChange: formik.handleChange,
+        onBlur: formik.handleBlur,
       },
       {
         field: "input",
@@ -46,8 +85,10 @@ const useProductForm = ({ type }) => {
         name: "price",
         id: "price",
         value: formik.values.price,
+        error: formik.touched.price ? formik.errors.price : "",
         placeholder: "Գին",
         onChange: formik.handleChange,
+        onBlur: formik.handleBlur,
       },
       {
         field: "input",
@@ -55,28 +96,17 @@ const useProductForm = ({ type }) => {
         name: "brand",
         id: "brand",
         value: formik.values.brand,
+        error: formik.touched.brand ? formik.errors.brand : "",
         placeholder: "Ապրանքանիշ",
         onChange: formik.handleChange,
+        onBlur: formik.handleBlur,
       },
       {
         field: "checkbox-group",
         heading: "Կատեգորիաներ",
         name: "categories",
         id: "categories",
-        inputs: [
-          {
-            value: "Բաժակ",
-            label: "Բաժակ",
-          },
-          {
-            value: "Գրիչ",
-            label: "Գրիչ",
-          },
-          {
-            value: "Նվեր քարտ",
-            label: "Նվեր քարտ",
-          },
-        ],
+        inputs: checkboxInputs,
         onChange: (values) => {
           formik.setFieldValue("categories", values);
         },
@@ -87,9 +117,11 @@ const useProductForm = ({ type }) => {
         name: "description",
         id: "description",
         value: formik.values.description,
+        error: formik.touched.description ? formik.errors.description : "",
         rows: 8,
         placeholder: "Նկարագրություն",
         onChange: formik.handleChange,
+        onBlur: formik.handleBlur,
       },
       {
         field: "files",

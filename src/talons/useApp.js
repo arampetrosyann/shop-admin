@@ -3,7 +3,8 @@ import { useHistory } from "react-router-dom";
 import { useApolloClient } from "@apollo/client";
 import { useDispatch } from "react-redux";
 import { setAdminData } from "../store/user/action";
-import { GET_ADMIN } from "../graphql/queries";
+import { setCategories } from "../store/categories/action";
+import { GET_ADMIN, CATEGORIES } from "../graphql/queries";
 
 const useApp = (authorization) => {
   const client = useApolloClient();
@@ -30,6 +31,16 @@ const useApp = (authorization) => {
             isDataFetched: true,
           })
         );
+
+        const resCategories = await client.query({
+          query: CATEGORIES,
+          fetchPolicy: "no-cache",
+        });
+
+        const { items, total } = await resCategories.data
+          .adminGetCategories;
+
+        dispatch(setCategories({ items, total, isDataFetched: true }));
       } else {
         dispatch(
           setAdminData({
