@@ -10,16 +10,18 @@
 
 @font-face {
   font-family: "icomoon";
-  src: url(assets/fonts/bf4e4ad0f91c870db18a96a04963c75e.icomoon.eot);
-  src: url(assets/fonts/bf4e4ad0f91c870db18a96a04963c75e.icomoon.eot#iefix)
+  src: url(assets/fonts/8302b57d4e8a049a1945ee2530f9e61e.icomoon.eot);
+  src: url(assets/fonts/8302b57d4e8a049a1945ee2530f9e61e.icomoon.eot#iefix)
       format("embedded-opentype"),
-    url(assets/fonts/ffa3594538343fcc1820c581ed12f612.icomoon.ttf) format("truetype"),
-    url(assets/fonts/30c2cd9a3b970b8f871e8e2da833c9e3.icomoon.woff) format("woff"),
-    url(assets/fonts/aac62024e329feca0d7b1d8f100cde61.icomoon.svg#icomoon) format("svg");
+    url(assets/fonts/757d7ccb5ddd3bc91f51938853306381.icomoon.ttf) format("truetype"),
+    url(assets/fonts/bc9dcdf7d7d6d66dfcebfdc368df71e3.icomoon.woff) format("woff"),
+    url(assets/fonts/bc87920806d763a857ce1edf9d18503e.icomoon.svg#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
+
+/*e900*/
 
 .root__3SI57OErB {
   padding: 11px 17px;
@@ -148,6 +150,7 @@
   border-radius: 6px;
   background-color: #ffffff;
   -webkit-appearance: none;
+  cursor: pointer;
   transition: 300ms;
 }
 
@@ -201,9 +204,12 @@
   position: absolute;
   top: 0;
   width: 100%;
+  max-height: 180px;
   background-color: #ffffff;
   border-radius: 6px;
   box-shadow: 1px 1px 5px #00000040;
+  overflow-x: hidden;
+  overflow-y: auto;
   z-index: 9;
 }
 
@@ -264,19 +270,7 @@
 .container__1tCN2w6zX {
 }
 
-.section__3hoQ5caVC {
-  margin-top: 40px;
-  padding-bottom: 60px;
-}
-.quickActions__Y9zqQjFAq {
-  display: flex;
-  justify-content: space-between;
-}
-.quickActionsButtons__1fSG1QUa4 {
-  display: flex;
-}
-.addButton__2RCe5BPYy,
-.removeButton__YvFodFs1w {
+.addButton__26eAZdMMg {
   border: 1px solid #1d1c1c;
   border-radius: 6px;
   width: 50px;
@@ -286,45 +280,58 @@
   justify-content: center;
   align-items: center;
 }
-.removeButton__YvFodFs1w {
-  margin-left: 10px;
-}
-.addButton__2RCe5BPYy:hover .add__2eSr7CUMI {
+.addButton__26eAZdMMg:hover .add__1URPth3aE {
   font-size: 18px;
   color: #031c38;
 }
-.removeButton__YvFodFs1w:hover .removeAll__2osuhtCfX {
-  font-size: 18px;
-  color: rgb(92, 1, 1);
-}
-.add__2eSr7CUMI,
-.removeAll__2osuhtCfX {
+.add__1URPth3aE {
   font-family: "icomoon";
   font-size: 14px;
   display: inline-block;
   transition: 0.1s linear;
 }
-.add__2eSr7CUMI::after {
+.add__1URPth3aE::after {
   content: "\ea0a";
   color: #1f4977;
 }
-.removeAll__2osuhtCfX::after {
+
+.removeButton__2LpnqGahE {
+  border: 1px solid #1d1c1c;
+  border-radius: 6px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.removeButton__2LpnqGahE:hover .removeAll__3GL8wMwyh {
+  font-size: 18px;
+  color: rgb(92, 1, 1);
+}
+.removeAll__3GL8wMwyh {
+  font-family: "icomoon";
+  font-size: 14px;
+  display: inline-block;
+  transition: 0.1s linear;
+}
+.removeAll__3GL8wMwyh::after {
   content: "\ea0f";
   color: rgb(177, 2, 2);
 }
-.disabledRemoveButton__2zFkvZ59k {
+.disabledRemoveButton__39l0rR8LZ {
   cursor: unset;
   opacity: 0.6;
 }
-.disabledRemoveButton__2zFkvZ59k:hover .removeAll__2osuhtCfX {
+.disabledRemoveButton__39l0rR8LZ:hover .removeAll__3GL8wMwyh {
   font-size: 14px;
   color: rgb(177, 2, 2);
 }
+
 .contentBox__1LVCqOPW4 {
   border: 1px solid rgb(197, 197, 197);
   box-shadow: 0px 2px 10px #a5a5a5;
   border-radius: 6px;
-  margin-top: 20px;
   width: 100%;
   overflow: hidden;
 }
@@ -377,10 +384,6 @@
 .disabled__16E2f-FZP {
   background-color: #315e8f;
   color: #d1d1d1;
-}
-
-.searchInput__g32ccNRsx {
-  width: 300px;
 }
 
 .section__34nGgXbAp {
@@ -476,13 +479,19 @@
 }
 
 .section__rD4jcP9q3 {
-  margin-top: 40px;
-  padding-bottom: 60px;
+  margin: 40px 0;
 }
-.section__rD4jcP9q3 h4 {
-  margin-top: 10px;
-  color: rgb(71, 71, 71);
-  font-weight: 500;
+.section__rD4jcP9q3 h2 {
+  margin: 40px 0;
+}
+.quickActionsLinks__2PupFYdUz {
+  display: flex;
+  justify-content: flex-end;
+}
+.quickActionsButtons__1nFF7Jd_p {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
 }
 .edit__3DeU5L61E,
 .remove__3txgTj5wz {
@@ -499,23 +508,21 @@
   content: "\ea0f";
   color: rgb(177, 2, 2);
 }
-.tableImage__2Z4s4CJkr {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-}
-.tableImage__2Z4s4CJkr > img {
-  width: 100%;
-}
 
 .section__3bkIBWyG_ {
-  margin-top: 40px;
-  padding-bottom: 60px;
+  margin: 40px 0;
 }
-.section__3bkIBWyG_ h4 {
-  margin-top: 10px;
-  color: rgb(71, 71, 71);
-  font-weight: 500;
+.section__3bkIBWyG_ h2 {
+  margin: 40px 0;
+}
+.quickActionsLinks__1qpQYYs4S {
+  display: flex;
+  justify-content: flex-end;
+}
+.quickActionsButtons__1EX2CKvoh {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
 }
 .edit__3sTikRbC6,
 .remove__2zqhQnrs- {
@@ -549,6 +556,7 @@
 }
 
 .heading__3IdyKrl5W {
+  margin-bottom: 21px;
   padding: 6px 0;
   text-align: center;
 }
@@ -564,6 +572,7 @@
 }
 
 .heading__258vw7zgS {
+  margin-bottom: 21px;
   padding: 6px 0;
   text-align: center;
 }
@@ -590,6 +599,37 @@
 .heading__29JLs_-h5 {
   padding: 6px 0;
   text-align: center;
+}
+
+.section__2bIGVShIw {
+  margin: 40px 0;
+}
+.section__2bIGVShIw h2 {
+  margin: 40px 0;
+}
+.quickActionsLinks__3HwBQr5yP {
+  display: flex;
+  justify-content: flex-end;
+}
+.quickActionsButtons__3Lwg51R4S {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+.edit__3x9OcHRIr,
+.remove__1D02fN5F9 {
+  font-family: "icomoon";
+  margin-right: 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.edit__3x9OcHRIr::after {
+  content: "\e905";
+  color: rgb(165, 165, 1);
+}
+.remove__1D02fN5F9::after {
+  content: "\ea0f";
+  color: rgb(177, 2, 2);
 }
 
 .root__1L2ZhECHS {
@@ -635,7 +675,6 @@
   width: 50%;
   flex-direction: column;
   justify-content: space-evenly;
-  overflow-x: hidden;
 }
 
 .heading__3x92ZjuXU {
@@ -663,7 +702,29 @@
   list-style: none;
 }
 
+.iconPlus__1-dKOuiHF {
+  margin-right: 6px;
+  font-family: icomoon;
+  color: rgb(3, 63, 38);
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.iconPlus__1-dKOuiHF::before {
+  content: "\ea0a";
+}
+
 .root__3m2ElFTvF {
+}
+
+.submitBtn__1DCigqPP6 {
+  max-width: unset;
+  width: 100%;
+}
+
+.deleteBtn__2gtblydu_ {
+  margin-top: 13px;
+  background: #aa1616;
 }
 
 .app {
@@ -708,4 +769,4 @@
 }
 
 
-/*# sourceMappingURL=main.4f298397b50c8ca8d3b3.css.map*/
+/*# sourceMappingURL=main.c5fe8b465edb330bb545.css.map*/
