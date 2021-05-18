@@ -1,41 +1,65 @@
 import React from "react";
 import MenuWrapper from "../../components/MenuWrapper";
-import Form from "../../components/Form";
+import Select from "../../components/Select";
 import Input from "../../components/Input";
 import ImageFile from "../../components/Files";
+import Button from "../../components/Button";
 import useAddSlider from "../../talons/useAddSlider";
 import classes from "./addSlider.module.css";
 
 const AddSlider = () => {
-  const { fields, formik, addSlider, handleAddForm } = useAddSlider();
+  const {
+    options,
+    label,
+    addForms,
+    inputValue,
+    handleInputValue,
+    handleSelect,
+    handleAddForm,
+  } = useAddSlider();
 
   return (
     <MenuWrapper>
       <div className={classes.section}>
         <h1 className={classes.heading}>Ավելացնել սլայդեր</h1>
-        <Form
-          action="/"
-          method="POST"
-          btnValue="Ավելացնել"
-          fields={fields}
-          onSubmit={formik.handleSubmit}
-          classes={{ root: classes.root }}
-          style={{ marginTop: "50px" }}
-        >
-          <span
-            className={
-              formik.values.selectSlider.length !== 0
-                ? classes.addSlider
-                : classes.disabledRemoveButton
-            }
-            onClick={handleAddForm}
-          >
-            <div className={classes.addFields}>
-              <Input placeholder="Add content" />
-              <ImageFile placeholder="Add image" />
-            </div>
-          </span>
-        </Form>
+        <div className={classes.content}>
+          <div className={classes.contentHeading}>
+            <Select
+              id="slider"
+              options={options}
+              label="slider"
+              onChange={handleSelect}
+            />
+            <span
+              className={
+                label ? classes.addSlider : classes.disabledAddButton
+              }
+              onClick={handleAddForm}
+            ></span>
+          </div>
+          {addForms.length !== 0 &&
+            addForms.map((form) => {
+              return (
+                <div className={classes.addFields} key={form}>
+                  <span className={classes.removeSlide}></span>
+                  <Input
+                    style={{ marginBottom: "20px", width: "100%" }}
+                    value={inputValue}
+                    onChange={handleInputValue}
+                    placeholder="Add content"
+                  />
+                  <ImageFile placeholder="Add image" />
+                </div>
+              );
+            })}
+          {addForms.length === 0 ? (
+            <Button style={{ marginTop: "40px" }} disabled>
+              Ավելացնել
+            </Button>
+          ) : (
+            <Button style={{ marginTop: "40px" }}>Ավելացնել</Button>
+          )}
+        </div>
       </div>
     </MenuWrapper>
   );

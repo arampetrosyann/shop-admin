@@ -1,59 +1,43 @@
-import { useMemo, useState } from "react";
-import { useFormik } from "formik";
+import { useCallback, useMemo, useState } from "react";
 
 const useAddSlider = () => {
-  const [addSlider, setAddSlider] = useState([]);
-  const formik = useFormik({
-    initialValues: {
-      selectSlider: "",
-      title: "",
-      image: null,
+  const [label, setLabel] = useState(null);
+  const [addForms, setAddForms] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [sliderImages, setSliderImages] = useState([]);
+
+  const options = useMemo(() => {
+    return [
+      { value: "Home slider", label: "Home slider" },
+      { value: "Product slider", label: "Product slider" },
+    ];
+  }, []);
+
+  const handleSelect = useCallback(
+    (e) => {
+      setLabel(e);
     },
+    [label]
+  );
+
+  const handleAddForm = useCallback(() => {
+    let form = `input-${addForms.length}`;
+    setAddForms((prevState) => prevState.concat([form]));
+  }, [addForms]);
+
+  const handleInputValue = useCallback((e) => {
+    setInputValue(e.target.value);
   });
 
-  const fields = useMemo(() => {
-    return [
-      {
-        field: "select",
-        label: "Ընտրել սլայդեր",
-        options: [
-          { value: "Գլխավոր էջ", label: "Գլխավոր էջ" },
-          { value: "Ապրանքների էջ", label: "Ապրանքների էջ" },
-        ],
-        onChange: (value) => formik.setFieldValue("selectSlider", value),
-        style: { width: "200px" },
-      },
-    ];
-  }, [formik]);
-
-  const addFields = useMemo(() => {
-    return [
-      {
-        field: "input",
-        type: "text",
-        name: "title",
-        id: "title",
-        value: formik.values.title,
-        placeholder: "Անվանում",
-        onChange: formik.handleChange,
-      },
-      {
-        field: "files",
-        placeholder: "Ավելացնել նկար",
-        accepts: ["image/*"],
-        maxFileSize: 10000000,
-        onChange: (files) => {
-          formik.setFieldValue("image", files[0]);
-        },
-      },
-    ];
-  }, [formik]);
-
-  const handleAddForm = () => {
-    setAddSlider(addFields);
+  return {
+    options,
+    label,
+    addForms,
+    inputValue,
+    handleInputValue,
+    handleSelect,
+    handleAddForm,
   };
-
-  return { fields, formik, addSlider, handleAddForm };
 };
 
 export default useAddSlider;
