@@ -11,11 +11,13 @@ const AddSlider = () => {
   const {
     options,
     label,
-    addForms,
-    inputValue,
+    sliderContent,
     handleInputValue,
     handleSelect,
     handleAddForm,
+    handleRemoveForm,
+    handleImage,
+    handleRemoveImg,
   } = useAddSlider();
 
   return (
@@ -37,28 +39,42 @@ const AddSlider = () => {
               onClick={handleAddForm}
             ></span>
           </div>
-          {addForms.length !== 0 &&
-            addForms.map((form) => {
+          {sliderContent.length !== 0 &&
+            sliderContent.map((value, i) => {
               return (
-                <div className={classes.addFields} key={form}>
-                  <span className={classes.removeSlide}></span>
+                <div className={classes.addFields} key={i}>
+                  <span
+                    className={classes.removeSlide}
+                    onClick={() => handleRemoveForm(i)}
+                  ></span>
                   <Input
                     style={{ marginBottom: "20px", width: "100%" }}
-                    value={inputValue}
-                    onChange={handleInputValue}
+                    value={value.inputValue}
+                    onChange={(e) => handleInputValue(i, e)}
                     placeholder="Add content"
                   />
-                  <ImageFile placeholder="Add image" />
+                  <ImageFile
+                    onChange={(e) => handleImage(i, e)}
+                    placeholder="Add image"
+                  />
+                  {value.sliderImage && (
+                    <div className={classes.imageDiv}>
+                      <span
+                        className={classes.removeImg}
+                        onClick={() => handleRemoveImg(i)}
+                      ></span>
+                      <img src={value.sliderImage} alt="" />
+                    </div>
+                  )}
                 </div>
               );
             })}
-          {addForms.length === 0 ? (
-            <Button style={{ marginTop: "40px" }} disabled>
-              Ավելացնել
-            </Button>
-          ) : (
-            <Button style={{ marginTop: "40px" }}>Ավելացնել</Button>
-          )}
+          <Button
+            style={{ marginTop: "40px" }}
+            disabled={sliderContent.length === 0}
+          >
+            Ավելացնել
+          </Button>
         </div>
       </div>
     </MenuWrapper>
@@ -66,3 +82,5 @@ const AddSlider = () => {
 };
 
 export default AddSlider;
+
+// jodit-react

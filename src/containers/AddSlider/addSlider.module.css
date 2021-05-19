@@ -1,7 +1,7 @@
 .section {
   display: flex;
   flex-direction: column;
-  margin: 70px 0;
+  padding: 70px 0;
   height: 100%;
 }
 
@@ -63,6 +63,36 @@
 }
 
 .removeSlide::after {
+  content: "\ea0f";
+  color: rgb(87, 85, 85);
+}
+
+.imageDiv {
+  margin-top: 20px;
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.imageDiv > img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.removeImg {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  font-family: "icomoon";
+  font-size: 12px;
+  display: inline-block;
+  cursor: pointer;
+  background-color: rgb(219, 219, 219);
+  border-radius: 3px;
+  padding: 2px;
+}
+
+.removeImg::after {
   content: "\ea0f";
   color: rgb(87, 85, 85);
 }
