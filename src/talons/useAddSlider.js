@@ -1,73 +1,88 @@
 import { useCallback, useMemo, useState } from "react";
 
 const useAddSlider = () => {
-  const [label, setLabel] = useState(null);
-  const [inputValue, setInputValue] = useState("");
-  const [sliderImages, setSliderImages] = useState([]);
-  const [sliderContent, setSliderContent] = useState([]);
+  const [sliderContent, setSliderContent] = useState({
+    sliderName: "",
+    content: [{ inputValue: "", sliderImage: null, onError: false }],
+  });
 
-  const options = useMemo(() => {
-    return [
-      { value: "Home slider", label: "Home slider" },
-      { value: "Product slider", label: "Product slider" },
-    ];
-  }, []);
-
-  const handleSelect = useCallback(
-    (e) => {
-      setLabel(e);
-    },
-    [label]
-  );
+  const handleSliderName = (e) => {
+    setSliderContent({ ...sliderContent, sliderName: e.target.value });
+  };
 
   const handleInputValue = useCallback(
     (i, e) => {
-      const values = [...sliderContent];
-      values[i].inputValue = e.target.value;
+      const values = { ...sliderContent };
+      values.content[i][e.target.name] = e.target.value;
+      setSliderContent(values);
+    },
+    [sliderContent]
+  );
+
+  const handleImage = useCallback(
+    (i, file) => {
+      const values = { ...sliderContent };
+      values.content[i].sliderImage = file[0].preview.url;
+      setSliderContent(values);
+    },
+    [sliderContent]
+  );
+
+  const handleRemoveImg = useCallback(
+    (i) => {
+      const values = { ...sliderContent };
+      values.content[i].sliderImage = null;
       setSliderContent(values);
     },
     [sliderContent]
   );
 
   const handleAddForm = useCallback(() => {
-    setSliderContent([
+    setSliderContent({
       ...sliderContent,
-      { inputValue: "", sliderImage: null },
-    ]);
+      content: [
+        ...sliderContent.content,
+        { inputValue: "", sliderImage: null },
+      ],
+    });
   }, [sliderContent]);
 
   const handleRemoveForm = useCallback(
     (i) => {
-      const list = [...sliderContent];
-      list.splice(i, 1);
+      const list = { ...sliderContent };
+      list.content.splice(i, 1);
       setSliderContent(list);
     },
     [sliderContent]
   );
 
-  const handleImage = (i, files) => {
-    const values = [...sliderContent];
-    values[i].sliderImage = files[0].preview.url;
-    setSliderContent(values);
-  };
+  console.log(sliderContent, 88);
 
-  const handleRemoveImg = (i) => {
-    const values = [...sliderContent];
-    values[i].sliderImage = null;
-    setSliderContent(values);
+  const addSlider = () => {
+    const list = { ...sliderContent };
+    const a = list.content.filter((item) => {
+      return item.sliderImage === null;
+    });
+    console.log(list, 66);
+    if (a.length === list.length) {
+      console.log(11111);
+    } else {
+      setSliderContent({
+        ...sliderContent,
+        onError: true,
+      });
+    }
   };
 
   return {
-    options,
-    label,
-    inputValue,
     sliderContent,
+    handleSliderName,
     handleInputValue,
-    handleSelect,
     handleAddForm,
     handleRemoveForm,
     handleImage,
     handleRemoveImg,
+    addSlider,
   };
 };
 
