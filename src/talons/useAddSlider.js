@@ -1,9 +1,16 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
+import * as yup from "yup";
+
+let schema = yup.object().shape({
+  sliderName: yup.string().required(),
+  inputValue: yup.string().required(),
+  sliderImage: yup.string().required(),
+});
 
 const useAddSlider = () => {
   const [sliderContent, setSliderContent] = useState({
     sliderName: "",
-    content: [{ inputValue: "", sliderImage: null, onError: false }],
+    content: [{ inputValue: "", sliderImage: null, onError: null }],
   });
 
   const handleSliderName = (e) => {
@@ -42,7 +49,7 @@ const useAddSlider = () => {
       ...sliderContent,
       content: [
         ...sliderContent.content,
-        { inputValue: "", sliderImage: null },
+        { inputValue: "", sliderImage: null, onError: false },
       ],
     });
   }, [sliderContent]);
@@ -56,22 +63,38 @@ const useAddSlider = () => {
     [sliderContent]
   );
 
-  console.log(sliderContent, 88);
+  console.log(sliderContent, 66);
 
   const addSlider = () => {
+    // const list = { ...sliderContent };
+    // const a = list.content.filter((item) => {
+    //   return item.sliderImage === null;
+    // });
+    // console.log(list, 66);
+    // if (a.length === list.length) {
+    //   console.log(11111);
+    // } else {
+    //   setSliderContent({
+    //     ...sliderContent,
+    //     onError: true,
+    //   });
+    // }
+
     const list = { ...sliderContent };
-    const a = list.content.filter((item) => {
-      return item.sliderImage === null;
+
+    list.content.map((el) => {
+      return schema
+        .isValid({
+          sliderName: list.sliderName,
+          inputValue: el.inputValue,
+          sliderImage: el.sliderImage,
+        })
+        .then(function (valid) {
+          console.log(valid, 33);
+          el.onError = !valid;
+          setSliderContent(list);
+        });
     });
-    console.log(list, 66);
-    if (a.length === list.length) {
-      console.log(11111);
-    } else {
-      setSliderContent({
-        ...sliderContent,
-        onError: true,
-      });
-    }
   };
 
   return {
