@@ -97,3 +97,10 @@
   content: "\ea0f";
   color: rgb(87, 85, 85);
 }
+
+.getErrorMessage {
+  position: absolute;
+  color: red;
+  font-size: 12px;
+  top: 37%;
+}

@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { useParams } from "react-router-dom";
 import * as yup from "yup";
 
 let schema = yup.object().shape({
@@ -8,9 +9,10 @@ let schema = yup.object().shape({
 });
 
 const useAddSlider = () => {
+  const { id } = useParams();
   const [sliderContent, setSliderContent] = useState({
     sliderName: "",
-    content: [{ inputValue: "", sliderImage: null, onError: null }],
+    content: [{ inputValue: "", sliderImage: null, onError: false }],
   });
 
   const handleSliderName = (e) => {
@@ -63,41 +65,27 @@ const useAddSlider = () => {
     [sliderContent]
   );
 
-  console.log(sliderContent, 66);
-
   const addSlider = () => {
-    // const list = { ...sliderContent };
-    // const a = list.content.filter((item) => {
-    //   return item.sliderImage === null;
-    // });
-    // console.log(list, 66);
-    // if (a.length === list.length) {
-    //   console.log(11111);
-    // } else {
-    //   setSliderContent({
-    //     ...sliderContent,
-    //     onError: true,
-    //   });
-    // }
-
     const list = { ...sliderContent };
 
-    list.content.map((el) => {
-      return schema
-        .isValid({
-          sliderName: list.sliderName,
-          inputValue: el.inputValue,
-          sliderImage: el.sliderImage,
-        })
-        .then(function (valid) {
-          console.log(valid, 33);
-          el.onError = !valid;
-          setSliderContent(list);
-        });
+    const promises = list.content.map((el, i) => {
+      return schema.isValid({
+        sliderName: list.sliderName,
+        inputValue: el.inputValue,
+        sliderImage: el.sliderImage,
+      });
+    });
+
+    Promise.all(promises).then((res) => {
+      res.forEach((valid, i) => {
+        list.content[i].onError = !valid;
+      });
+      setSliderContent(list);
     });
   };
 
   return {
+    id,
     sliderContent,
     handleSliderName,
     handleInputValue,

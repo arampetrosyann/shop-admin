@@ -8,6 +8,7 @@ import classes from "./addSlider.module.css";
 
 const AddSlider = () => {
   const {
+    id,
     sliderContent,
     handleSliderName,
     handleInputValue,
@@ -36,7 +37,6 @@ const AddSlider = () => {
             ></span>
           </div>
           {sliderContent.content.map((value, i) => {
-            console.log(value, 99);
             return (
               <div className={classes.addFields} key={i}>
                 <span
@@ -50,7 +50,11 @@ const AddSlider = () => {
                   onChange={(e) => handleInputValue(i, e)}
                   placeholder="Add content"
                 />
-                {value.onError && "asgddxsg"}
+                {value.onError && (
+                  <div className={classes.getErrorMessage}>
+                    *Field is empty
+                  </div>
+                )}
                 <ImageFile
                   onChange={(e) => handleImage(i, e)}
                   placeholder="Add image"
