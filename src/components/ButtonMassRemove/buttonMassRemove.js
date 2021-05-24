@@ -9,6 +9,7 @@ const ButtonMassRemove = (props) => {
           ? classes.removeButton
           : classes.disabledRemoveButton
       }
+      disabled={props.idsArray.length === 0}
       onClick={props.handleMassRemoveButton}
     >
       <span className={classes.removeAll}></span>

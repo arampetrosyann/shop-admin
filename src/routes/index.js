@@ -10,8 +10,7 @@ import AddUser from "../pages/AddUser";
 import UpdateUser from "../pages/UpdateUser";
 import ReviewsTable from "../containers/ReviewsTable";
 import SlidersTable from "../containers/SlidersTable";
-import AddSlider from "../containers/AddSlider";
-import UpdateSlider from "../containers/UpdateSlider";
+import AddAndUpdateSlider from "../containers/AddAndUpdateSlider";
 import Category from "../pages/Category";
 
 const Routes = () => {
@@ -49,10 +48,10 @@ const Routes = () => {
             <SlidersTable />
           </Route>
           <Route path="/add-slider">
-            <AddSlider />
+            <AddAndUpdateSlider />
           </Route>
           <Route path="/slider/:id">
-            <UpdateSlider />
+            <AddAndUpdateSlider />
           </Route>
         </>
       ) : (

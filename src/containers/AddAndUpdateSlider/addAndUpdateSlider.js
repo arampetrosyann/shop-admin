@@ -1,10 +1,11 @@
 import React from "react";
 import MenuWrapper from "../../components/MenuWrapper";
 import Input from "../../components/Input";
+import TextEditor from "../../components/TextEditor";
 import ImageFile from "../../components/Files";
 import Button from "../../components/Button";
-import useAddSlider from "../../talons/useAddSlider";
-import classes from "./addSlider.module.css";
+import useSlider from "../../talons/useSlider";
+import classes from "./addAndUpdateSlider.module.css";
 
 const AddSlider = () => {
   const {
@@ -17,12 +18,14 @@ const AddSlider = () => {
     handleImage,
     handleRemoveImg,
     addSlider,
-  } = useAddSlider();
+  } = useSlider();
 
   return (
     <MenuWrapper>
       <div className={classes.section}>
-        <h1 className={classes.heading}>Ավելացնել սլայդեր</h1>
+        <h1 className={classes.heading}>
+          {id ? "Փոխել սլայդերի տվյալները" : "Ավելացնել սլայդեր"}
+        </h1>
         <div className={classes.content}>
           <div className={classes.contentHeading}>
             <Input
@@ -43,13 +46,14 @@ const AddSlider = () => {
                   className={classes.removeSlide}
                   onClick={() => handleRemoveForm(i)}
                 ></span>
-                <Input
+                {/* <Input
                   style={{ marginBottom: "20px", width: "100%" }}
                   value={value.inputValue}
                   name="inputValue"
                   onChange={(e) => handleInputValue(i, e)}
                   placeholder="Add content"
-                />
+                /> */}
+                <TextEditor />
                 {value.onError && (
                   <div className={classes.getErrorMessage}>
                     *Field is empty

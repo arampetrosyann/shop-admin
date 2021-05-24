@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import image1 from "../assets/images/best-gift.jpg";
 import image2 from "../assets/images/book-author.jpg";
 
-const useReviewsTable = (props) => {
+const useSlidersTable = (props) => {
   const [idsArrayState, setIdsArrayState] = useState([]);
   const [searchInputValue, setSearchInputValue] = useState("");
 
@@ -14,12 +14,12 @@ const useReviewsTable = (props) => {
   };
 
   const handleSlidersMassRemoveButton = async () => {
-    await removeMassCustomers({
+    await removeMassSliders({
       variables: {
         customerIds: idsArrayState,
       },
     });
-    getCustomers();
+    getSliders();
   };
 
   const handleSearchInput = (e) => {
@@ -103,4 +103,4 @@ const useReviewsTable = (props) => {
   };
 };
 
-export default useReviewsTable;
+export default useSlidersTable;

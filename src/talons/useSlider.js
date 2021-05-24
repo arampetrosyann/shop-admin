@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useEffect, useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as yup from "yup";
 
@@ -13,6 +13,12 @@ const useAddSlider = () => {
   const [sliderContent, setSliderContent] = useState({
     sliderName: "",
     content: [{ inputValue: "", sliderImage: null, onError: false }],
+  });
+
+  useEffect(() => {
+    if (id) {
+      console.log(id);
+    }
   });
 
   const handleSliderName = (e) => {
@@ -68,7 +74,7 @@ const useAddSlider = () => {
   const addSlider = () => {
     const list = { ...sliderContent };
 
-    const promises = list.content.map((el, i) => {
+    const promises = list.content.map((el) => {
       return schema.isValid({
         sliderName: list.sliderName,
         inputValue: el.inputValue,
