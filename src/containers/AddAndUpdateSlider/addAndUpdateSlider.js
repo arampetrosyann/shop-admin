@@ -12,7 +12,7 @@ const AddSlider = () => {
     id,
     sliderContent,
     handleSliderName,
-    handleInputValue,
+    handleEditorValue,
     handleAddForm,
     handleRemoveForm,
     handleImage,
@@ -46,14 +46,10 @@ const AddSlider = () => {
                   className={classes.removeSlide}
                   onClick={() => handleRemoveForm(i)}
                 ></span>
-                {/* <Input
-                  style={{ marginBottom: "20px", width: "100%" }}
-                  value={value.inputValue}
-                  name="inputValue"
-                  onChange={(e) => handleInputValue(i, e)}
-                  placeholder="Add content"
-                /> */}
-                <TextEditor />
+                <TextEditor
+                  content={value.editorValue}
+                  onChange={(e) => handleEditorValue(i, e)}
+                />
                 {value.onError && (
                   <div className={classes.getErrorMessage}>
                     *Field is empty

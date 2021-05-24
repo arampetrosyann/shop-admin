@@ -4,7 +4,7 @@ import * as yup from "yup";
 
 let schema = yup.object().shape({
   sliderName: yup.string().required(),
-  inputValue: yup.string().required(),
+  editorValue: yup.string().required(),
   sliderImage: yup.string().required(),
 });
 
@@ -12,7 +12,15 @@ const useAddSlider = () => {
   const { id } = useParams();
   const [sliderContent, setSliderContent] = useState({
     sliderName: "",
-    content: [{ inputValue: "", sliderImage: null, onError: false }],
+    sliderNameError: false,
+    content: [
+      {
+        editorValue: "",
+        sliderImage: null,
+        editorError: false,
+        imageError: false,
+      },
+    ],
   });
 
   useEffect(() => {
@@ -21,15 +29,18 @@ const useAddSlider = () => {
     }
   });
 
+  console.log(sliderContent, 99);
+
   const handleSliderName = (e) => {
     setSliderContent({ ...sliderContent, sliderName: e.target.value });
   };
 
-  const handleInputValue = useCallback(
+  const handleEditorValue = useCallback(
     (i, e) => {
-      const values = { ...sliderContent };
-      values.content[i][e.target.name] = e.target.value;
-      setSliderContent(values);
+      setSliderContent((values) => {
+        values.content[i].editorValue = e;
+        return { ...values };
+      });
     },
     [sliderContent]
   );
@@ -57,7 +68,12 @@ const useAddSlider = () => {
       ...sliderContent,
       content: [
         ...sliderContent.content,
-        { inputValue: "", sliderImage: null, onError: false },
+        {
+          editorValue: "",
+          sliderImage: null,
+          editorError: false,
+          imageError: false,
+        },
       ],
     });
   }, [sliderContent]);
@@ -74,27 +90,56 @@ const useAddSlider = () => {
   const addSlider = () => {
     const list = { ...sliderContent };
 
-    const promises = list.content.map((el) => {
-      return schema.isValid({
-        sliderName: list.sliderName,
-        inputValue: el.inputValue,
-        sliderImage: el.sliderImage,
+    schema
+      .validate({ sliderName: list.sliderName })
+      .then((res) => {
+        list.sliderNameError = false;
+        setSliderContent(list);
+      })
+      .catch((err) => {
+        list.sliderNameError = true;
+        setSliderContent(list);
       });
+
+    list.content.map((el) => {
+      return schema
+        .validate({
+          editorValue: el.editorValue,
+          sliderImage: el.sliderImage,
+        })
+        .then((res) => {
+          console.log(res, 11);
+        })
+        .catch((err) => {
+          console.log(err, 22);
+        });
     });
 
-    Promise.all(promises).then((res) => {
-      res.forEach((valid, i) => {
-        list.content[i].onError = !valid;
-      });
-      setSliderContent(list);
-    });
+    // const promises = list.content.map((el) => {
+    //   return schema.isValid({
+    //     sliderName: list.sliderName,
+    //     editorValue: el.editorValue,
+    //     sliderImage: el.sliderImage,
+    //   });
+    // });
+
+    // Promise.all(promises).then((res) => {
+    //   res.forEach((valid, i) => {
+    //     console.log(list);
+    //     list.sliderNameError = !valid;
+    //     list.content[i].editorError = !valid;
+    //     list.content[i].imageError = !valid;
+    //     // list.content[i].onError = !valid;
+    //   });
+    //   setSliderContent(list);
+    // });
   };
 
   return {
     id,
     sliderContent,
     handleSliderName,
-    handleInputValue,
+    handleEditorValue,
     handleAddForm,
     handleRemoveForm,
     handleImage,

@@ -21,7 +21,7 @@
     "formik": "^2.2.6",
     "graphql": "^15.5.0",
     "jodit": "^3.6.17",
-    "jodit-react": "^1.0.86",
+    "jodit-react": "^1.0.87",
     "react": "^17.0.2",
     "react-d3-tree": "^2.0.1",
     "react-dom": "^17.0.2",
