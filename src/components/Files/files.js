@@ -14,6 +14,7 @@ const ReactFiles = (props) => {
     maxFileSize,
     maxFiles,
     placeholder,
+    children,
   } = props;
 
   const classes = mergeClasses(defaultClasses, props.classes);
@@ -32,6 +33,7 @@ const ReactFiles = (props) => {
       >
         {placeholder}
       </Files>
+      {children}
     </div>
   );
 };

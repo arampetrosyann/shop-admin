@@ -39,10 +39,11 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  position: relative;
 }
 
 .addFields {
-  margin: 40px 0;
+  margin: 60px 0;
   width: 100%;
   box-shadow: 0px 4px 10px 6px #c9c9c9;
   padding: 20px;
@@ -99,8 +100,15 @@
 }
 
 .getErrorMessage {
-  position: absolute;
   color: red;
   font-size: 12px;
-  top: 37%;
+  position: absolute;
+  top: 100%;
+}
+
+.addAndUpdateSlider {
+  composes: root from "../../components/Files/files.module.css";
+  margin-top: 20px;
+  position: relative;
+  padding: 22px 0;
 }

@@ -29,16 +29,19 @@ const useAddSlider = () => {
     }
   });
 
-  console.log(sliderContent, 99);
-
   const handleSliderName = (e) => {
-    setSliderContent({ ...sliderContent, sliderName: e.target.value });
+    setSliderContent({
+      ...sliderContent,
+      sliderName: e.target.value,
+      sliderNameError: false,
+    });
   };
 
   const handleEditorValue = useCallback(
     (i, e) => {
       setSliderContent((values) => {
         values.content[i].editorValue = e;
+        values.content[i].editorError = false;
         return { ...values };
       });
     },
@@ -49,6 +52,7 @@ const useAddSlider = () => {
     (i, file) => {
       const values = { ...sliderContent };
       values.content[i].sliderImage = file[0].preview.url;
+      values.content[i].imageError = false;
       setSliderContent(values);
     },
     [sliderContent]
@@ -87,11 +91,12 @@ const useAddSlider = () => {
     [sliderContent]
   );
 
-  const addSlider = () => {
+  const addSlider = useCallback(() => {
     const list = { ...sliderContent };
 
-    schema
-      .validate({ sliderName: list.sliderName })
+    yup
+      .reach(schema, "sliderName")
+      .validate(list.sliderName)
       .then((res) => {
         list.sliderNameError = false;
         setSliderContent(list);
@@ -102,38 +107,41 @@ const useAddSlider = () => {
       });
 
     list.content.map((el) => {
-      return schema
-        .validate({
-          editorValue: el.editorValue,
-          sliderImage: el.sliderImage,
-        })
+      return yup
+        .reach(schema, "editorValue")
+        .validate(el.editorValue)
         .then((res) => {
-          console.log(res, 11);
+          setSliderContent((values) => {
+            el.editorError = false;
+            return { ...values };
+          });
         })
         .catch((err) => {
-          console.log(err, 22);
+          setSliderContent((values) => {
+            el.editorError = true;
+            return { ...values };
+          });
         });
     });
 
-    // const promises = list.content.map((el) => {
-    //   return schema.isValid({
-    //     sliderName: list.sliderName,
-    //     editorValue: el.editorValue,
-    //     sliderImage: el.sliderImage,
-    //   });
-    // });
-
-    // Promise.all(promises).then((res) => {
-    //   res.forEach((valid, i) => {
-    //     console.log(list);
-    //     list.sliderNameError = !valid;
-    //     list.content[i].editorError = !valid;
-    //     list.content[i].imageError = !valid;
-    //     // list.content[i].onError = !valid;
-    //   });
-    //   setSliderContent(list);
-    // });
-  };
+    list.content.map((el) => {
+      return yup
+        .reach(schema, "sliderImage")
+        .validate(el.sliderImage)
+        .then((res) => {
+          setSliderContent((values) => {
+            el.imageError = false;
+            return { ...values };
+          });
+        })
+        .catch((err) => {
+          setSliderContent((values) => {
+            el.imageError = true;
+            return { ...values };
+          });
+        });
+    });
+  }, [sliderContent]);
 
   return {
     id,

@@ -1,3 +1,6 @@
+.component {
+  position: relative;
+}
 .component ul,
 .component ol {
   padding-inline-start: 40px;

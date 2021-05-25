@@ -29,11 +29,16 @@ const AddSlider = () => {
         <div className={classes.content}>
           <div className={classes.contentHeading}>
             <Input
-              style={{ marginBottom: "20px", width: "50%" }}
+              style={{ width: "50%" }}
               value={sliderContent.sliderName}
               onChange={handleSliderName}
               placeholder="Add name"
             />
+            {sliderContent.sliderNameError && (
+              <div className={classes.getErrorMessage}>
+                *Field is empty
+              </div>
+            )}
             <span
               className={classes.addSlider}
               onClick={handleAddForm}
@@ -49,16 +54,24 @@ const AddSlider = () => {
                 <TextEditor
                   content={value.editorValue}
                   onChange={(e) => handleEditorValue(i, e)}
-                />
-                {value.onError && (
-                  <div className={classes.getErrorMessage}>
-                    *Field is empty
-                  </div>
-                )}
+                >
+                  {value.editorError && (
+                    <div className={classes.getErrorMessage}>
+                      *Field is empty
+                    </div>
+                  )}
+                </TextEditor>
                 <ImageFile
+                  classes={{ root: classes.addAndUpdateSlider }}
                   onChange={(e) => handleImage(i, e)}
                   placeholder="Add image"
-                />
+                >
+                  {value.imageError && (
+                    <div className={classes.getErrorMessage}>
+                      *Field is empty
+                    </div>
+                  )}
+                </ImageFile>
                 {value.sliderImage && (
                   <div className={classes.imageDiv}>
                     <span

@@ -25,6 +25,7 @@ const TextEditor = (props) => {
         ),
         []
       )}
+      {props.children}
     </div>
   );
 };
