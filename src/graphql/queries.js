@@ -34,12 +34,14 @@ export const GET_CUSTOMERS = gql`
 export const PRODUCTS = gql`
   query Products {
     products {
-      _id
-      title
-      image
-      brand
-      description
-      price
+      products {
+        _id
+        title
+        image
+        brand
+        description
+        price
+      }
     }
   }
 `;

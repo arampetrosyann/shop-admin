@@ -39,7 +39,15 @@ const useProductForm = ({ type }) => {
       let result = values;
 
       if (values.image) {
-        result = { ...values, image: JSON.stringify(values.image) };
+        const res = await fetch(
+          "https://shop-yereone.herokuapp.com/single",
+          {
+            method: "POST",
+            body: values.image,
+          }
+        );
+
+        result = { ...values, image: values.image.name };
       }
 
       if (type === "add") {
@@ -47,7 +55,9 @@ const useProductForm = ({ type }) => {
           variables: { productInput: result },
         });
       } else if (type === "update") {
-        await updateProduct({ variables: { id: id, ...values } });
+        await updateProduct({
+          variables: { productId: id, productInput: result },
+        });
       }
 
       history.replace("/products");

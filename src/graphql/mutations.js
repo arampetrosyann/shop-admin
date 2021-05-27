@@ -63,23 +63,12 @@ export const CREATE_PRODUCT = gql`
 `;
 
 export const UPDATE_PRODUCT = gql`
-  mutation(
-    $id: ID!
-    $title: String
-    $brand: String
-    $description: String
-    $price: Float
-    $categories: [ID!]
-  ) {
+  mutation($productId: ID!, $productInput: ProductInput) {
     adminUpdateProduct(
-      id: $id
-      title: $title
-      brand: $brand
-      description: $description
-      price: $price
-      categories: $categories
+      productId: $productId
+      productInput: $productInput
     ) {
-      title
+      _id
     }
   }
 `;
