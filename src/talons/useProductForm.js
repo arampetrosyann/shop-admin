@@ -44,6 +44,10 @@ const useProductForm = ({ type }) => {
           {
             method: "POST",
             body: values.image,
+            mode: "cors",
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+            },
           }
         );
 
