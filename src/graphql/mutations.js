@@ -98,3 +98,35 @@ export const UPDATE_CATEGORY = gql`
     )
   }
 `;
+
+export const DELETE_ORDER = gql`
+  mutation($orderId: ID) {
+    adminDeleteOrder(orderId: $orderId)
+  }
+`;
+
+export const DELETE_MASS_ORDERS = gql`
+  mutation($orderIds: [ID]!) {
+    adminMassDeleteOrders(orderIds: $orderIds)
+  }
+`;
+
+export const CHANGE_ORDER_STATUS = gql`
+  mutation($orderId: ID!, $status: String) {
+    adminChangeOrderStatus(orderId: $orderId, status: $status) {
+      id
+      orderNumber
+      createdAt
+      shippingTotal
+      subTotal
+      grandTotal
+      totalQty
+      orderStatus
+      customer {
+        firstname
+        lastname
+        email
+      }
+    }
+  }
+`;

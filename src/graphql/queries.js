@@ -32,14 +32,16 @@ export const GET_CUSTOMERS = gql`
 `;
 
 export const PRODUCTS = gql`
-  query Products {
-    products {
-      _id
-      title
-      image
-      brand
-      description
-      price
+  query($limit: Float!, $page: Float!) {
+    products(limit: $limit, page: $page) {
+      totalQty
+      products {
+        title
+        image
+        brand
+        description
+        price
+      }
     }
   }
 `;
@@ -51,6 +53,59 @@ export const CATEGORIES = gql`
         id
         title
         parent
+      }
+    }
+  }
+`;
+
+export const ORDERS = gql`
+  query {
+    adminOrders {
+      total
+      items {
+        id
+        orderNumber
+        grandTotal
+        totalQty
+        orderStatus
+        customer {
+          firstname
+          email
+        }
+      }
+    }
+  }
+`;
+
+export const ORDER = gql`
+  query($orderId: ID) {
+    adminOrder(orderId: $orderId) {
+      id
+      orderNumber
+      createdAt
+      shippingTotal
+      subTotal
+      grandTotal
+      totalQty
+      orderStatus
+      customer {
+        firstname
+        lastname
+        email
+      }
+      items {
+        id
+        productId {
+          _id
+          title
+          image
+          brand
+          price
+        }
+        name
+        quantity
+        price
+        total
       }
     }
   }
