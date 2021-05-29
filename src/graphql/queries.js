@@ -32,8 +32,9 @@ export const GET_CUSTOMERS = gql`
 `;
 
 export const PRODUCTS = gql`
-  query Products {
-    products {
+  query($limit: Float!, $page: Float!) {
+    products(limit: $limit, page: $page) {
+      totalQty
       products {
         _id
         title

@@ -19,7 +19,9 @@ const ProductTable = () => {
   const { firstName } = useSelector((state) => state.admin);
   const history = useHistory();
 
-  const { data: productData } = useQuery(PRODUCTS);
+  const { data: productData } = useQuery(PRODUCTS, {
+    variables: { limit: 10, page: 1 },
+  });
 
   const handleEdit = () => {
     history.push("/");
@@ -143,7 +145,7 @@ const ProductTable = () => {
         column5: image1,
       },
     ],
-    []
+    [productData]
   );
 
   const columns = useMemo(
