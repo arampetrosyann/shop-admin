@@ -59,3 +59,56 @@ export const CATEGORIES = gql`
     }
   }
 `;
+
+export const ORDERS = gql`
+  query {
+    adminOrders {
+      total
+      items {
+        id
+        orderNumber
+        grandTotal
+        totalQty
+        orderStatus
+        customer {
+          firstname
+          email
+        }
+      }
+    }
+  }
+`;
+
+export const ORDER = gql`
+  query($orderId: ID) {
+    adminOrder(orderId: $orderId) {
+      id
+      orderNumber
+      createdAt
+      shippingTotal
+      subTotal
+      grandTotal
+      totalQty
+      orderStatus
+      customer {
+        firstname
+        lastname
+        email
+      }
+      items {
+        id
+        productId {
+          _id
+          title
+          image
+          brand
+          price
+        }
+        name
+        quantity
+        price
+        total
+      }
+    }
+  }
+`;

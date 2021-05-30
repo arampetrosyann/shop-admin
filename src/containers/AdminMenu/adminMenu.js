@@ -193,7 +193,6 @@ const AdminMenu = (props) => {
                     ? classes.adminMenuButtonActive
                     : classes.adminMenuButton,
               }}
-              onClick={() => handleMenuItem(2)}
             >
               Կարծիքներ
             </Button>
@@ -244,6 +243,20 @@ const AdminMenu = (props) => {
               </ul>
             </div>
           )}
+        </div>
+        <div>
+          <Link to="/orders">
+            <Button
+              classes={{
+                root:
+                  menuItemActive === 2
+                    ? classes.adminMenuButtonActive
+                    : classes.adminMenuButton,
+              }}
+            >
+              Պատվերներ
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

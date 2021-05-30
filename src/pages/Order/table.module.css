@@ -1,0 +1,35 @@
+.container {
+  border: 1px solid #c5c5c5;
+  box-shadow: 0px 2px 10px #a5a5a5;
+  border-radius: 6px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  padding: 15px 20px;
+  background-color: #e0e0e0;
+}
+
+.tableContainer {
+  background-color: #ffffff;
+  padding: 15px 20px;
+  overflow-x: auto;
+}
+
+.tableContainer table {
+  width: 100%;
+  text-align: left;
+  border-spacing: 0;
+}
+
+.tableContainer table th,
+.tableContainer table td {
+  border-bottom: 1px solid rgb(197, 197, 197);
+  padding: 10px;
+}
+
+.tableContainer > table > tr:nth-child(even) {
+  background-color: #f4f4f4;
+}

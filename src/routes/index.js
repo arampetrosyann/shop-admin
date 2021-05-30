@@ -10,6 +10,8 @@ import AddUser from "../pages/AddUser";
 import UpdateUser from "../pages/UpdateUser";
 import ReviewsTable from "../containers/ReviewsTable";
 import Category from "../pages/Category";
+import Orders from "../pages/Orders";
+import Order from "../pages/Order";
 
 const Routes = () => {
   const { signedIn } = useSelector((state) => state.admin);
@@ -41,6 +43,12 @@ const Routes = () => {
           </Route>
           <Route path="/reviews">
             <ReviewsTable />
+          </Route>
+          <Route path="/orders">
+            <Orders />
+          </Route>
+          <Route path="/order/:id">
+            <Order />
           </Route>
         </>
       ) : (
