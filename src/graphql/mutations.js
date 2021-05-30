@@ -73,6 +73,14 @@ export const UPDATE_PRODUCT = gql`
   }
 `;
 
+export const DELETE_PRODUCT = gql`
+  mutation($id: ID!) {
+    adminDeleteProduct(id: $id) {
+      title
+    }
+  }
+`;
+
 export const ADD_CATEGORY = gql`
   mutation($categoryData: CategoryInputData!) {
     adminAddCategory(categoryData: $categoryData)
