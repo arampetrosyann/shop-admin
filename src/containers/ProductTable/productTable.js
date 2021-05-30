@@ -208,7 +208,7 @@ const ProductTable = () => {
     []
   );
   return (
-    <MenuWrapper activeClass={0}>
+    <MenuWrapper>
       <div className={classes.section}>
         <h2>Բարի Գալուստ {firstName}</h2>
         <div className={classes.quickActionsLinks}>

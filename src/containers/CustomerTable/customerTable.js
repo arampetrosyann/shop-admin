@@ -99,7 +99,7 @@ const CustomerTable = () => {
   );
 
   return (
-    <MenuWrapper activeClass={1}>
+    <MenuWrapper>
       <div className={classes.section}>
         <h2>Բարի Գալուստ {firstName}</h2>
         <div className={classes.quickActionsLinks}>

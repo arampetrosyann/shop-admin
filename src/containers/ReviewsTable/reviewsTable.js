@@ -16,7 +16,7 @@ const ReviewsTable = () => {
   });
 
   return (
-    <MenuWrapper activeClass={2}>
+    <MenuWrapper>
       <div className={classes.section}>
         <h2>Բարի Գալուստ {firstName}</h2>
         <div className={classes.quickActionsLinks}>
