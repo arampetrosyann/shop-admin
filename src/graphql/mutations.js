@@ -134,3 +134,20 @@ export const UPDATE_CATEGORY = gql`
     )
   }
 `;
+
+// slider
+export const ADD_SLIDER = gql`
+  mutation AddSlider($title: String, $name: String, $image: String) {
+    adminAddSlider(title: $title, name: $name, image: $image) {
+      id
+      title
+      slides {
+        id
+        name
+        imag: String
+        content
+        contentPosition
+      }
+    }
+  }
+`;

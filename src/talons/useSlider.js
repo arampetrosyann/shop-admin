@@ -1,6 +1,8 @@
 import { useEffect, useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as yup from "yup";
+import { useMutation } from "@apollo/client";
+import { ADD_SLIDER } from "../graphql/mutations";
 
 let schema = yup.object().shape({
   sliderName: yup.string().required(),
@@ -10,6 +12,7 @@ let schema = yup.object().shape({
 
 const useAddSlider = () => {
   const { id } = useParams();
+  const [addSliders] = useMutation(ADD_SLIDER);
   const [sliderContent, setSliderContent] = useState({
     sliderName: "",
     sliderNameError: false,
@@ -93,7 +96,6 @@ const useAddSlider = () => {
 
   const addSlider = useCallback(() => {
     const list = { ...sliderContent };
-
     yup
       .reach(schema, "sliderName")
       .validate(list.sliderName)
@@ -140,6 +142,13 @@ const useAddSlider = () => {
             return { ...values };
           });
         });
+    });
+    addSliders({
+      variables: {
+        title: sliderContent.content,
+        name: sliderContent.sliderName,
+        image: sliderContent.content.sliderImage,
+      },
     });
   }, [sliderContent]);
 
