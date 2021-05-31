@@ -1,9 +1,10 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { useMutation } from "@apollo/client";
+import { useMutation, useApolloClient } from "@apollo/client";
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { GET_PRODUCT } from "../graphql/queries";
 import { CREATE_PRODUCT, UPDATE_PRODUCT } from "../graphql/mutations";
 
 const validationSchema = Yup.object().shape({
@@ -19,6 +20,7 @@ const validationSchema = Yup.object().shape({
 const useProductForm = ({ type }) => {
   const { id } = useParams();
   const history = useHistory();
+  const client = useApolloClient();
   const { items, isDataFetched } = useSelector(
     (state) => state.categories
   );
@@ -144,6 +146,24 @@ const useProductForm = ({ type }) => {
       },
     ];
   }, [formik]);
+
+  useEffect(() => {
+    if (type === "update") {
+      (async () => {
+        const res = await client.query({
+          query: GET_PRODUCT,
+          variables: { id },
+        });
+
+        const { title, price, image, description, brand } = await res.data
+          .productById;
+
+        formik.resetForm({
+          values: { title, image, brand, description, price },
+        });
+      })();
+    }
+  }, [type]);
 
   return { fields, formik };
 };

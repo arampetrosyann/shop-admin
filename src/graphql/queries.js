@@ -47,6 +47,24 @@ export const PRODUCTS = gql`
   }
 `;
 
+export const GET_PRODUCT = gql`
+  query($id: ID) {
+    productById(id: $id) {
+      _id
+      title
+      image
+      brand
+      description
+      price
+      categories {
+        id
+        title
+        parent
+      }
+    }
+  }
+`;
+
 export const CATEGORIES = gql`
   query {
     adminGetCategories {
